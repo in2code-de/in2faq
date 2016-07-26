@@ -1,0 +1,8 @@
+<f:for each="{faqs}" as="faq">
+	<section>
+		<h4 class="js-collapser">{faq.question}</h4>
+		<div>
+			<f:format.html parseFuncTSPath="lib.parseFunc">{faq.answer}</f:format.html>
+		</div>
+	</section>
+</f:for>

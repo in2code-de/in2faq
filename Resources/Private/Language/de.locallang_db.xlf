@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-05-02T12:00:00Z" product-name="in2faq">
+		<header/>
+		<body>
+			<trans-unit id="tx_in2faq_domain_model_question">
+				<source>Question/Answer</source>
+				<target state="translated">Frage/Antwort</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_question.question">
+				<source>Question</source>
+				<target state="translated">Frage</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_question.answer">
+				<source>Answer</source>
+				<target state="translated">Antwort</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_question.question_from">
+				<source>Question from</source>
+				<target state="translated">Frage von</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_question.related_links">
+				<source>Related links</source>
+				<target state="translated">Links zur Antwort</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_question.categories">
+				<source>Categories</source>
+				<target state="translated">Kategorien</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_question.expert">
+				<source>Expert</source>
+				<target state="translated">Experte</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_category">
+				<source>Category</source>
+				<target state="translated">Kategorie</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_category.title">
+				<source>Title</source>
+				<target state="translated">Bezeichnung</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_category.uri">
+				<source>URI</source>
+				<target state="translated">Link</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_category.expert">
+				<source>Expert</source>
+				<target state="translated">Experte</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_expert">
+				<source>Expert</source>
+				<target state="translated">Experte</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_expert.name">
+				<source>Name</source>
+				<target state="translated">Name</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_expert.email">
+				<source>Email</source>
+				<target state="translated">E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_expert.uri">
+				<source>URI</source>
+				<target state="translated">Link</target>
+			</trans-unit>
+
+			<trans-unit id="flexform.main">
+				<source>Settings</source>
+				<target state="translated">Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="flexform.main.categories">
+				<source>Filter by categories (empty will show all)</source>
+				<target state="translated">Filter nach Kategorien (leer zeigt alle)</target>
+			</trans-unit>
+			<trans-unit id="flexform.main.startpid">
+				<source>Show only FAQ in given pages (and subpages)</source>
+				<target state="translated">Zeige nur FAQ dieser Seite (und deren Unterseiten)</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

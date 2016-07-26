@@ -1,0 +1,21 @@
+{
+  "name": "in2code/in2faq",
+  "description": "Simple and modern FAQ extension with a CommandController to import faq from extension irfaq",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "In2code GmbH",
+      "email": "service@in2code.de"
+    }
+  ],
+  "type": "typo3-cms-extension",
+  "license": "GPL-3.0",
+  "require": {
+    "typo3/cms": ">=7.6.0 < 7.99.99"
+  },
+  "autoload": {
+    "psr-4": {
+      "In2code\\In2faq\\": "Classes"
+    }
+  }
+}

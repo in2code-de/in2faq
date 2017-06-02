@@ -49,6 +49,7 @@ return [
                     ['LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1],
                     ['LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0]
                 ],
+                'default' => 0,
             ],
         ],
         'l10n_parent' => [

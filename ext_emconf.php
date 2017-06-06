@@ -13,13 +13,13 @@ $EM_CONF[$_EXTKEY] = array(
     'dependencies' => 'extbase, fluid',
     'state' => 'stable',
     'author_company' => 'in2code GmbH',
-    'version' => '1.0.0',
+    'version' => '2.0.0',
     'constraints' => array(
         'depends' => array(
             'php' => '5.5.0-0.0.0',
-            'typo3' => '7.6.0-8.6.1',
-            'extbase' => '7.6.0-8.6.1',
-            'fluid' => '7.6.0-8.6.1'
+            'typo3' => '7.6.0-8.7.99',
+            'extbase' => '7.6.0-8.7.99',
+            'fluid' => '7.6.0-8.7.99'
         ),
         'conflicts' => array(),
         'suggests' => array(),

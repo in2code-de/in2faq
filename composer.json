@@ -1,7 +1,7 @@
 {
   "name": "in2code/in2faq",
   "description": "Simple and modern FAQ extension with a CommandController to import faq from extension irfaq",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "authors": [
     {
       "name": "In2code GmbH",

@@ -14,7 +14,7 @@ interface HelperInterface
 
     /**
      * Parse the value
-     * 
+     *
      * @param string $value
      * @return string
      */

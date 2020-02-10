@@ -25,6 +25,7 @@ class ImportFromIrfaqCommandController extends CommandController
      * @param boolean $dryrun Test how many record could be imported
      * @param int $forcePid Force import of all records to a pid
      * @return void
+     * @throws \Exception
      */
     public function importCommand($dryrun = false, $forcePid = null)
     {
@@ -40,6 +41,7 @@ class ImportFromIrfaqCommandController extends CommandController
      * @param boolean $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return void
+     * @throws \Exception
      */
     protected function importCategories($dryrun, $forcePid)
     {
@@ -54,6 +56,7 @@ class ImportFromIrfaqCommandController extends CommandController
      * @param boolean $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return void
+     * @throws \Exception
      */
     protected function importExperts($dryrun, $forcePid)
     {
@@ -68,6 +71,7 @@ class ImportFromIrfaqCommandController extends CommandController
      * @param boolean $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return void
+     * @throws \Exception
      */
     protected function importQuestions($dryrun, $forcePid)
     {
@@ -82,6 +86,7 @@ class ImportFromIrfaqCommandController extends CommandController
      * @param boolean $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return void
+     * @throws \Exception
      */
     protected function importQuestionCategoriesRelation($dryrun, $forcePid)
     {

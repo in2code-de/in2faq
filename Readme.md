@@ -2,6 +2,13 @@
 
 To render questions and anwers as TYPO3 extension as a possible follower for irfaq.
 
+## Explanation
+
+There are two plugins. The first shows you questions and answers. The second allows you to set a filter over your
+question list. There is a filter by searchterm and a categoryfilter.
+
+A commandcontroller allows you to import old irfaq records into new tables
+
 ## Changelog
 
 | Version    | Date       | State      | Description                                                                                                                                                                                |

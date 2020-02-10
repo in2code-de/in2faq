@@ -1,8 +1,10 @@
-<f:for each="{filter.questions}" as="question">
-	<section data-in2faq="section">
-		<h4 data-in2faq="question">{question.question}</h4>
-		<div data-in2faq="answer">
-			<f:format.html parseFuncTSPath="lib.parseFunc">{question.answer}</f:format.html>
-		</div>
-	</section>
-</f:for>
+<div class="in2faq in2faq-pi1">
+	<f:for each="{filter.questions}" as="question">
+		<section data-in2faq="section">
+			<h4 data-in2faq="question">{question.question}</h4>
+			<div data-in2faq="answer">
+				<f:format.html parseFuncTSPath="lib.parseFunc">{question.answer}</f:format.html>
+			</div>
+		</section>
+	</f:for>
+</div>

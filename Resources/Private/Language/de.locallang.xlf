@@ -3,9 +3,25 @@
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-05-02T12:00:00Z" product-name="in2faq">
 		<header/>
 		<body>
-			<trans-unit id="notice_no_configuration">
-				<source>No configuration found. Please set at least a start page or a category!</source>
-				<target state="translated">Keine Konfiguration gefunden. Bitte setzen Sie mindestens eine Kategorie oder einen Ausgangspunkt!</target>
+			<trans-unit id="pi2.search.label">
+				<source>Search</source>
+				<target state="translated">Suche</target>
+			</trans-unit>
+			<trans-unit id="pi2.search.placeholder">
+				<source>Any searchterm</source>
+				<target state="translated">Beliebige Suchbegriffe</target>
+			</trans-unit>
+			<trans-unit id="pi2.search.submit">
+				<source>Submit</source>
+				<target state="translated">Absenden</target>
+			</trans-unit>
+			<trans-unit id="pi2.categoryfilter.label">
+				<source>Filter by category</source>
+				<target state="translated">Nach Kategorie filtern</target>
+			</trans-unit>
+			<trans-unit id="pi2.reset.label">
+				<source>Reset filter</source>
+				<target state="translated">Filter zurücksetzen</target>
 			</trans-unit>
 		</body>
 	</file>

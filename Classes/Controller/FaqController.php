@@ -2,34 +2,39 @@
 declare(strict_types=1);
 namespace In2code\In2faq\Controller;
 
+use In2code\In2faq\Domain\Repository\CategoryRepository;
 use In2code\In2faq\Domain\Repository\QuestionRepository;
+use In2code\In2faq\Utility\ObjectUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 
 /**
  * Class FaqController
+ * @noinspection PhpUnused
  */
 class FaqController extends ActionController
 {
     /**
-     * @var QuestionRepository
-     */
-    protected $questionRepository;
-
-    /**
      * @return void
+     * @noinspection PhpUnused
+     * @throws InvalidQueryException
      */
-    public function listAction()
+    public function listAction(): void
     {
-        $faqs = $this->questionRepository->findBySettings((array)$this->settings);
+        $questionRepository = ObjectUtility::getObjectManager()->get(QuestionRepository::class);
+        $faqs = $questionRepository->findBySettings((array)$this->settings);
         $this->view->assign('faqs', $faqs);
     }
 
     /**
-     * @param QuestionRepository $questionRepository
      * @return void
+     * @noinspection PhpUnused
+     * @throws InvalidQueryException
      */
-    public function injectQuestionRepository(QuestionRepository $questionRepository): void
+    public function filterAction(): void
     {
-        $this->questionRepository = $questionRepository;
+        $questionRepository = ObjectUtility::getObjectManager()->get(CategoryRepository::class);
+        $categories = $questionRepository->findBySettings($this->settings);
+        $this->view->assign('categories', $categories);
     }
 }

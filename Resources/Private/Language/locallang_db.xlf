@@ -58,6 +58,19 @@
 			<trans-unit id="flexform.main.startpid">
 				<source>Show only FAQ in given pages (and subpages)</source>
 			</trans-unit>
+
+			<trans-unit id="flexform.pi2.main">
+				<source>Settings</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi2.main.showSearchfield">
+				<source>Show search field</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi2.main.showCategoryFilter">
+				<source>Show category filter</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi2.main.categories">
+				<source>Show only this categoris for filter (empty = show all)</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

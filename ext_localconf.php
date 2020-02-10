@@ -7,16 +7,26 @@ call_user_func(
     function () {
 
         /**
-         * Include Frontend Plugins for In2etb
+         * Include Frontend Plugins
          */
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'In2code.in2faq',
             'Pi1',
             [
-                'Faq' => 'list, notice'
+                'Faq' => 'list'
             ],
             [
-                'Faq' => ''
+                'Faq' => 'list'
+            ]
+        );
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'In2code.in2faq',
+            'Pi2',
+            [
+                'Faq' => 'filter'
+            ],
+            [
+                'Faq' => 'filter'
             ]
         );
 

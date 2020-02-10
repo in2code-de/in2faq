@@ -1,0 +1,21 @@
+<f:if condition="{settings.showSearchfield}">
+	<f:form name="filter">
+		<div class="form-group">
+			<label for="faqsearch">Search</label>
+			<f:form.textfield property="searchterm" class="form-control" id="faqsearch" placeholder="Any searchterm"/>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</f:form>
+</f:if>
+
+
+<f:if condition="{settings.showCategoryFilter}">
+	<ul>
+		<f:for each="{categories}" as="category">
+			<li>
+				<f:link.action arguments="{filter:'{category:category.uid}'}">{category.title}</f:link.action>
+			</li>
+		</f:for>
+	</ul>
+</f:if>
+

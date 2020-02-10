@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 namespace In2code\In2faq\Importer\Helpers;
 
 /**
  * Class RemoveImageTagsHelper
- * @package In2code\In2faq\Importer\Helpers
  */
 class RemoveImageTagsHelper extends AbstractHelper
 {

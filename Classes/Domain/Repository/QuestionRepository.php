@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\In2faq\Domain\Repository;
 
+use In2code\In2faq\Domain\Model\Dto\Filter;
 use In2code\In2faq\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -20,17 +21,48 @@ class QuestionRepository extends AbstractRepository
     protected $treeList = [];
 
     /**
-     * @param array $settings
+     * @param Filter $filter
      * @return array|QueryResultInterface
      * @throws InvalidQueryException
      */
-    public function findBySettings(array $settings)
+    public function findByFilterAndSettings(Filter $filter)
     {
         $query = $this->createQuery();
-        $and = [$query->greaterThan('uid', 0)];
+        $and = [];
+        $and = $this->filterBySettingsStartpages($query, $and, $filter->getSettings());
+        $and = $this->filterBySettingsCategories($query, $and, $filter->getSettings());
+        $and = $this->filterByFilterSearchterm($query, $and, $filter);
+        $and = $this->filterByFilterCategory($query, $and, $filter);
+        if ($and !== []) {
+            $query->matching($query->logicalAnd($and));
+        }
+        $query->setOrderings(['sorting' => QueryInterface::ORDER_ASCENDING]);
+        return $query->execute();
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param array $and
+     * @param array $settings
+     * @return array
+     * @throws InvalidQueryException
+     */
+    protected function filterBySettingsStartpages(QueryInterface $query, array $and, array $settings): array
+    {
         if ($this->getPagesFromStartpage($settings) !== []) {
             $and[] = $query->in('pid', $this->getPagesFromStartpage($settings));
         }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param array $and
+     * @param array $settings
+     * @return array
+     */
+    protected function filterBySettingsCategories(QueryInterface $query, array $and, array $settings): array
+    {
         if (!empty($settings['flexform']['main']['categories'])) {
             $categoryUids = GeneralUtility::trimExplode(',', $settings['flexform']['main']['categories'], true);
             $logicalOr = [];
@@ -39,9 +71,42 @@ class QuestionRepository extends AbstractRepository
             }
             $and[] = $query->logicalOr($logicalOr);
         }
-        $query->matching($query->logicalAnd($and));
-        $query->setOrderings(['sorting' => QueryInterface::ORDER_ASCENDING]);
-        return $query->execute();
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param array $and
+     * @param Filter $filter
+     * @return array
+     * @throws InvalidQueryException
+     */
+    protected function filterByFilterSearchterm(QueryInterface $query, array $and, Filter $filter): array
+    {
+        if ($filter->getSearchterm() !== '') {
+            $logicalOr = [];
+            foreach ($filter->getSearchterms() as $searchterm) {
+                $logicalOr[] = $query->like('question', '%' . $searchterm . '%');
+                $logicalOr[] = $query->like('answer', '%' . $searchterm . '%');
+            }
+            $and[] = $query->logicalOr($logicalOr);
+        }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param array $and
+     * @param Filter $filter
+     * @return array
+     * @throws InvalidQueryException
+     */
+    protected function filterByFilterCategory(QueryInterface $query, array $and, Filter $filter): array
+    {
+        if ($filter->getCategory() !== null) {
+            $and[] = $query->contains('categories', $filter->getCategory());
+        }
+        return $and;
     }
 
     /**

@@ -1,8 +1,8 @@
-<f:for each="{faqs}" as="faq">
+<f:for each="{filter.questions}" as="question">
 	<section data-in2faq="section">
-		<h4 data-in2faq="question">{faq.question}</h4>
+		<h4 data-in2faq="question">{question.question}</h4>
 		<div data-in2faq="answer">
-			<f:format.html parseFuncTSPath="lib.parseFunc">{faq.answer}</f:format.html>
+			<f:format.html parseFuncTSPath="lib.parseFunc">{question.answer}</f:format.html>
 		</div>
 	</section>
 </f:for>

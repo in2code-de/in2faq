@@ -1,8 +1,8 @@
 <f:if condition="{settings.showSearchfield}">
-	<f:form name="filter">
+	<f:form name="filter" action="list" pluginName="Pi1">
 		<div class="form-group">
 			<label for="faqsearch">Search</label>
-			<f:form.textfield property="searchterm" class="form-control" id="faqsearch" placeholder="Any searchterm"/>
+			<f:form.textfield property="searchterm" class="form-control" id="faqsearch" placeholder="Any searchterm" value="{filter.searchterm}"/>
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</f:form>
@@ -13,9 +13,13 @@
 	<ul>
 		<f:for each="{categories}" as="category">
 			<li>
-				<f:link.action arguments="{filter:'{category:category.uid}'}">{category.title}</f:link.action>
+				<f:link.action action="list" arguments="{filter:'{category:category.uid}'}" class="{f:if(condition:'{filter.category} == {category}',then:'act')}">{category.title}</f:link.action>
 			</li>
 		</f:for>
 	</ul>
 </f:if>
 
+
+<f:if condition="{filter.set}">
+	<f:link.page class="btn btn-secondary">Reset filter</f:link.page>
+</f:if>

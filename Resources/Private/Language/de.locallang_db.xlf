@@ -76,6 +76,23 @@
 				<source>Show only FAQ in given pages (and subpages)</source>
 				<target state="translated">Zeige nur FAQ dieser Seite (und deren Unterseiten)</target>
 			</trans-unit>
+
+			<trans-unit id="flexform.pi2.main">
+				<source>Settings</source>
+				<target state="translated">Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi2.main.showSearchfield">
+				<source>Show search field</source>
+				<target state="translated">Zeige Volltextsuche</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi2.main.showCategoryFilter">
+				<source>Show category filter</source>
+				<target state="translated">Zeige Kategoriefilter</target>
+			</trans-unit>
+			<trans-unit id="flexform.pi2.main.categories">
+				<source>Show only this categoris for filter (empty = show all)</source>
+				<target state="translated">Zeige nur diese Kategorien für Filter (leer = zeige alle)</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

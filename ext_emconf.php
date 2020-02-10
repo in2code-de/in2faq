@@ -6,20 +6,17 @@
 
 $EM_CONF[$_EXTKEY] = array(
     'title' => 'in2faq',
-    'description' => 'Simple and modern FAQ extension with a CommandController to import faq from extension irfaq',
+    'description' => 'Simple and modern FAQ extension with a cli command to import faq from extension irfaq',
     'category' => 'misc',
     'author' => 'in2code GmbH',
     'author_email' => 'service@in2code.de',
-    'dependencies' => 'extbase, fluid',
+    'dependencies' => '',
     'state' => 'stable',
     'author_company' => 'in2code GmbH',
-    'version' => '3.0.0',
+    'version' => '4.0.0',
     'constraints' => array(
         'depends' => array(
-            'php' => '5.5.0-0.0.0',
-            'typo3' => '7.6.0-9.5.99',
-            'extbase' => '7.6.0-9.5.99',
-            'fluid' => '7.6.0-9.5.99'
+            'typo3' => '9.5.0-10.99.99',
         ),
         'conflicts' => array(),
         'suggests' => array(),

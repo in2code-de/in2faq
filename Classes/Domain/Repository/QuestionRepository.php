@@ -1,87 +1,128 @@
 <?php
+declare(strict_types=1);
 namespace In2code\In2faq\Domain\Repository;
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2016 in2code GmbH <info@in2code.de>, in2code.de
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
-
+use In2code\In2faq\Domain\Model\Dto\Filter;
 use In2code\In2faq\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
-use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * Class QuestionRepository
- * @package In2code\In2faq\Domain\Repository
  */
-class QuestionRepository extends Repository
+class QuestionRepository extends AbstractRepository
 {
-
     /**
-     * @var string
+     * @var array
      */
-    protected $treeList = null;
+    protected $treeList = [];
 
     /**
-     * @param array $settings
+     * @param Filter $filter
      * @return array|QueryResultInterface
+     * @throws InvalidQueryException
      */
-    public function findBySettings(array $settings)
+    public function findByFilterAndSettings(Filter $filter)
     {
         $query = $this->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(false);
-        $and = [$query->greaterThan('uid', 0)];
-        if ($this->getPagesFromStartpage($settings)) {
-            $and[] = $query->in('pid', $this->getPagesFromStartpage($settings));
+        $and = [];
+        $and = $this->filterBySettingsStartpages($query, $and, $filter->getSettings());
+        $and = $this->filterBySettingsCategories($query, $and, $filter->getSettings());
+        $and = $this->filterByFilterSearchterm($query, $and, $filter);
+        $and = $this->filterByFilterCategory($query, $and, $filter);
+        if ($and !== []) {
+            $query->matching($query->logicalAnd($and));
         }
-        if (!empty($settings['flexform']['main']['categories'])) {
-            $categoryUids = GeneralUtility::trimExplode(',', $settings['flexform']['main']['categories'], true);
-            $or = [];
-            foreach ($categoryUids as $categoryUid) {
-                $or[] = $query->equals('categories.uid', (int)$categoryUid);
-            }
-            $and[] = $query->logicalOr($or);
-        }
-        $query->matching($query->logicalAnd($and));
         $query->setOrderings(['sorting' => QueryInterface::ORDER_ASCENDING]);
         return $query->execute();
     }
 
     /**
+     * @param QueryInterface $query
+     * @param array $and
      * @param array $settings
-     * @return array|null
+     * @return array
+     * @throws InvalidQueryException
      */
-    protected function getPagesFromStartpage(array $settings)
+    protected function filterBySettingsStartpages(QueryInterface $query, array $and, array $settings): array
     {
-        if ($this->treeList === null && !empty($settings['flexform']['main']['startpid'])) {
+        if ($this->getPagesFromStartpage($settings) !== []) {
+            $and[] = $query->in('pid', $this->getPagesFromStartpage($settings));
+        }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param array $and
+     * @param array $settings
+     * @return array
+     */
+    protected function filterBySettingsCategories(QueryInterface $query, array $and, array $settings): array
+    {
+        if (!empty($settings['flexform']['main']['categories'])) {
+            $categoryUids = GeneralUtility::trimExplode(',', $settings['flexform']['main']['categories'], true);
+            $logicalOr = [];
+            foreach ($categoryUids as $categoryUid) {
+                $logicalOr[] = $query->equals('categories.uid', (int)$categoryUid);
+            }
+            $and[] = $query->logicalOr($logicalOr);
+        }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param array $and
+     * @param Filter $filter
+     * @return array
+     * @throws InvalidQueryException
+     */
+    protected function filterByFilterSearchterm(QueryInterface $query, array $and, Filter $filter): array
+    {
+        if ($filter->getSearchterm() !== '') {
+            $logicalOr = [];
+            foreach ($filter->getSearchterms() as $searchterm) {
+                $logicalOr[] = $query->like('question', '%' . $searchterm . '%');
+                $logicalOr[] = $query->like('answer', '%' . $searchterm . '%');
+            }
+            $and[] = $query->logicalOr($logicalOr);
+        }
+        return $and;
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @param array $and
+     * @param Filter $filter
+     * @return array
+     * @throws InvalidQueryException
+     */
+    protected function filterByFilterCategory(QueryInterface $query, array $and, Filter $filter): array
+    {
+        if ($filter->getCategory() !== null) {
+            $and[] = $query->contains('categories', $filter->getCategory());
+        }
+        return $and;
+    }
+
+    /**
+     * @param array $settings
+     * @return int[]
+     */
+    protected function getPagesFromStartpage(array $settings): array
+    {
+        if ($this->treeList === [] && !empty($settings['flexform']['main']['startpid'])) {
             $treeList = '';
             $startPages = GeneralUtility::trimExplode(',', $settings['flexform']['main']['startpid'], true);
             $queryGenerator = ObjectUtility::getObjectManager()->get(QueryGenerator::class);
             foreach ($startPages as $startPage) {
                 $treeList .= $queryGenerator->getTreeList($startPage, 20, 0, 1) . ',';
             }
-            return GeneralUtility::trimExplode(',', $treeList, true);
+            $this->treeList = GeneralUtility::trimExplode(',', $treeList, true);
         }
         return $this->treeList;
     }

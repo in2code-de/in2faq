@@ -3,22 +3,42 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-/**
- * Disable non needed fields in tt_content
- */
-$TCA['tt_content']['types']['list']['subtypes_excludelist']['in2faq_pi1'] = 'select_key,pages,recursive';
+call_user_func(
+    function () {
 
-/**
- * Include Plugins
- */
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi1', 'FAQ');
+        /**
+         * Disable non needed fields in tt_content
+         */
+        $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['in2faq_pi1']
+            = 'select_key,pages,recursive';
 
-/**
- * Flexform
- */
-$pluginSignature = str_replace('_', '', 'in2faq') . '_pi1';
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    $pluginSignature,
-    'FILE:EXT:in2faq/Configuration/FlexForms/FlexFormPi1.xml'
+        /**
+         * Include Plugins
+         */
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi1', 'FAQ');
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi2', 'FAQ Filter');
+
+        /**
+         * Flexform
+         */
+        $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['in2faq_pi1'] = 'pi_flexform';
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+            'in2faq_pi1',
+            'FILE:EXT:in2faq/Configuration/FlexForms/FlexFormPi1.xml'
+        );
+        $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['in2faq_pi2'] = 'pi_flexform';
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+            'in2faq_pi2',
+            'FILE:EXT:in2faq/Configuration/FlexForms/FlexFormPi2.xml'
+        );
+
+        /**
+         * Add TypoScript Static Template
+         */
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+            'in2faq',
+            'Configuration/TypoScript/',
+            'Main TypoScript'
+        );
+    }
 );

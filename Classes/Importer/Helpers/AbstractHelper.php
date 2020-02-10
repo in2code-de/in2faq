@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 namespace In2code\In2faq\Importer\Helpers;
 
 /**
  * Class AbstractHelper
- * @package In2code\In2faq\Importer\Helpers
  */
 abstract class AbstractHelper implements HelperInterface
 {

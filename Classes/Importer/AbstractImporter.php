@@ -1,44 +1,18 @@
 <?php
+declare(strict_types=1);
 namespace In2code\In2faq\Importer;
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2016 Alex Kellner <alexander.kellner@in2code.de>, in2code.de
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+use Doctrine\DBAL\DBALException;
 use In2code\In2faq\Importer\Helpers\AbstractHelper;
+use In2code\In2faq\Importer\Helpers\HelperInterface;
+use In2code\In2faq\Utility\DatabaseUtility;
 use In2code\In2faq\Utility\ObjectUtility;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
 
 /**
  * Class AbstractImporter
  */
 abstract class AbstractImporter implements ImporterInterface
 {
-
-    /**
-     * @var null|DatabaseConnection
-     */
-    protected $databaseConnection = null;
-
     /**
      * Table from where to import
      *
@@ -100,7 +74,7 @@ abstract class AbstractImporter implements ImporterInterface
     /**
      * @var string
      */
-    protected $helperInterface = 'In2code\\In2faq\\Importer\\Helpers\\HelperInterface';
+    protected $helperInterface = HelperInterface::class;
 
     /**
      * @var bool
@@ -108,19 +82,12 @@ abstract class AbstractImporter implements ImporterInterface
     protected $truncateBeforeImport = true;
 
     /**
-     * AbstractImporter constructor.
-     */
-    public function __construct()
-    {
-        $this->databaseConnection = ObjectUtility::getDatabaseConnection();
-    }
-
-    /**
      * Import from irfaq
      *
      * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
+     * @throws \Exception
      */
     public function import($dryrun = false, $forcePid = null)
     {
@@ -142,22 +109,31 @@ abstract class AbstractImporter implements ImporterInterface
      */
     protected function getOldRows()
     {
-        return (array)$this->databaseConnection->exec_SELECTgetRows('*', $this->tableNameOld, '1');
+        $queryBuilder = DatabaseUtility::getQueryBuilderForTable($this->tableNameOld);
+        return (array)$queryBuilder
+            ->select('*')
+            ->from($this->tableNameOld)
+            ->where('uid > 0')
+            ->execute()
+            ->fetchAll();
     }
 
     /**
      * @param array $row
      * @param int|null $forcePid Force import of all records to a pid
+     * @throws \Exception
      */
     protected function importRow(array $row, $forcePid)
     {
-        $this->databaseConnection->exec_INSERTquery($this->tableName, $this->getFieldArray($row, $forcePid));
+        $connection = DatabaseUtility::getConnectionForTable($this->tableName);
+        $connection->insert($this->tableName, $this->getFieldArray($row, $forcePid));
     }
 
     /**
      * @param array $row
      * @param int|null $forcePid Force import of all records to a pid
      * @return array
+     * @throws \Exception
      */
     protected function getFieldArray(array $row, $forcePid)
     {
@@ -213,17 +189,17 @@ abstract class AbstractImporter implements ImporterInterface
     protected function truncateTable()
     {
         if ($this->truncateBeforeImport) {
-            $this->databaseConnection->exec_TRUNCATEquery($this->tableName);
+            DatabaseUtility::getConnectionForTable($this->tableName)->truncate($this->tableName);
         }
     }
 
     /**
-     * @param string $fieldName
+     * @param $fieldName
      * @return bool
+     * @throws DBALException
      */
     protected function isFieldExistingInNewTable($fieldName)
     {
-        $newFields = $this->databaseConnection->admin_get_fields($this->tableName);
-        return array_key_exists($fieldName, $newFields);
+        return DatabaseUtility::isFieldExistingInTable($fieldName, $this->tableName);
     }
 }

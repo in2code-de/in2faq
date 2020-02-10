@@ -3,8 +3,20 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2014-05-02T12:00:00Z" product-name="in2etb">
 		<header/>
 		<body>
-			<trans-unit id="notice_no_configuration">
-				<source>No configuration found. Please set at least a start page or a category!</source>
+			<trans-unit id="pi2.search.label">
+				<source>Search</source>
+			</trans-unit>
+			<trans-unit id="pi2.search.placeholder">
+				<source>Any searchterm</source>
+			</trans-unit>
+			<trans-unit id="pi2.search.submit">
+				<source>Submit</source>
+			</trans-unit>
+			<trans-unit id="pi2.categoryfilter.label">
+				<source>Filter by category</source>
+			</trans-unit>
+			<trans-unit id="pi2.reset.label">
+				<source>Reset filter</source>
 			</trans-unit>
 		</body>
 	</file>

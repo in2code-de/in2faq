@@ -1,0 +1,34 @@
+<div class="in2faq in2faq-pi2">
+	<f:if condition="{settings.showSearchfield}">
+		<f:form name="filter" action="list" pluginName="Pi1">
+			<div class="form-group">
+				<label for="faqsearch">
+					<f:translate key="pi2.search.label">Search</f:translate>
+				</label>
+				<f:form.textfield property="searchterm" class="form-control" id="faqsearch" placeholder="{f:translate(key:'pi2.search.placeholder')}" value="{filter.searchterm}"/>
+			</div>
+			<button type="submit" class="btn btn-primary">
+				<f:translate key="pi2.search.submit">Submit</f:translate>
+			</button>
+		</f:form>
+	</f:if>
+
+
+	<f:if condition="{settings.showCategoryFilter}">
+		<h4><f:translate key="pi2.categoryfilter.label">Filter by category</f:translate></h4>
+		<ul>
+			<f:for each="{categories}" as="category">
+				<li>
+					<f:link.action action="list" arguments="{filter:'{category:category.uid}'}" class="{f:if(condition:'{filter.category} == {category}',then:'act')}">{category.title}</f:link.action>
+				</li>
+			</f:for>
+		</ul>
+	</f:if>
+
+
+	<f:if condition="{filter.set}">
+		<f:link.page class="btn btn-secondary">
+			<f:translate key="pi2.reset.label">Reset filter</f:translate>
+		</f:link.page>
+	</f:if>
+</div>

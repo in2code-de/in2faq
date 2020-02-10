@@ -1,13 +1,12 @@
 <?php
+declare(strict_types=1);
 namespace In2code\In2faq\Importer\Helpers;
 
 /**
  * Interface HelperInterface
- * @package In2code\In2faq\Importer
  */
 interface HelperInterface
 {
-
     /**
      * @return void
      */
@@ -15,7 +14,7 @@ interface HelperInterface
 
     /**
      * Parse the value
-     * 
+     *
      * @param string $value
      * @return string
      */

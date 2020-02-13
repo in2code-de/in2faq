@@ -21,21 +21,25 @@ class CategoryRepository extends AbstractRepository
 
     /**
      * @param array $settings
+     * @param array $data tt_content.*
      * @return QueryResultInterface
      * @throws InvalidQueryException
      */
-    public function findBySettings(array $settings): QueryResultInterface
+    public function findBySettings(array $settings, array $data): QueryResultInterface
     {
-        if (empty($settings['categoryFilter']['categories'])) {
-            return $this->findAll();
-        }
-
         $query = $this->createQuery();
-        $constraint = $query->in(
-            'uid',
-            GeneralUtility::intExplode(',', $settings['categoryFilter']['categories'], true)
-        );
-        $query->matching($constraint);
+        $logicalAnd = [];
+        if (!empty($settings['categoryFilter']['categories'])) {
+            $logicalAnd[] = $query->in(
+                'uid',
+                GeneralUtility::intExplode(',', $settings['categoryFilter']['categories'], true)
+            );
+        } elseif ($data['pages'] !== '') {
+            $logicalAnd[] = $query->in('pid', GeneralUtility::intExplode(',', $data['pages'], true));
+        }
+        if ($logicalAnd !== []) {
+            $query->matching($query->logicalAnd($logicalAnd));
+        }
         return $query->execute();
     }
 }

@@ -35,7 +35,8 @@ class FaqController extends ActionController
     public function listAction(Filter $filter): void
     {
         $this->view->assignMultiple([
-            'filter' => $filter
+            'filter' => $filter,
+            'data' => $this->configurationManager->getContentObject()->data
         ]);
     }
 
@@ -58,10 +59,12 @@ class FaqController extends ActionController
     public function filterAction(Filter $filter): void
     {
         $questionRepository = ObjectUtility::getObjectManager()->get(CategoryRepository::class);
-        $categories = $questionRepository->findBySettings($this->settings);
+        $data = $this->configurationManager->getContentObject()->data;
+        $categories = $questionRepository->findBySettings($this->settings, $data);
         $this->view->assignMultiple([
             'categories' => $categories,
-            'filter' => $filter
+            'filter' => $filter,
+            'data' => $data
         ]);
     }
 

@@ -13,6 +13,7 @@ A commandcontroller allows you to import old irfaq records into new tables
 
 | Version    | Date       | State      | Description                                                                                                                                                                                |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 4.1.0      | 2019-02-13 | Feature    | Pi2: Show categories from given startpoint. If empty, show all. Also pass tt_content.* to views. |
 | 4.0.1      | 2019-02-11 | Bugfix     | Remove unneeded version from composer.json. |
 | 4.0.0      | 2019-02-10 | Task       | Update for newer TYPO3 versions. Add a filter functionality. |
 | 3.0.0      | 2019-03-31 | Task       | Update for TYPO3 9 |

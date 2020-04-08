@@ -16,11 +16,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 class QuestionRepository extends AbstractRepository
 {
     /**
-     * @var array
-     */
-    protected $treeList = [];
-
-    /**
      * @param Filter $filter
      * @return array|QueryResultInterface
      * @throws InvalidQueryException
@@ -115,15 +110,15 @@ class QuestionRepository extends AbstractRepository
      */
     protected function getPagesFromStartpage(array $settings): array
     {
-        if ($this->treeList === [] && !empty($settings['flexform']['main']['startpid'])) {
+        if (!empty($settings['flexform']['main']['startpid'])) {
             $treeList = '';
             $startPages = GeneralUtility::trimExplode(',', $settings['flexform']['main']['startpid'], true);
             $queryGenerator = ObjectUtility::getObjectManager()->get(QueryGenerator::class);
             foreach ($startPages as $startPage) {
                 $treeList .= $queryGenerator->getTreeList($startPage, 20, 0, 1) . ',';
             }
-            $this->treeList = GeneralUtility::trimExplode(',', $treeList, true);
+            return GeneralUtility::trimExplode(',', $treeList, true);
         }
-        return $this->treeList;
+        return [];
     }
 }

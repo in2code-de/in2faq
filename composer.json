@@ -17,5 +17,10 @@
     "psr-4": {
       "In2code\\In2faq\\": "Classes"
     }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "in2faq"
+    }
   }
 }

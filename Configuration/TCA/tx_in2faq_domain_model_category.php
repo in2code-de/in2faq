@@ -55,6 +55,7 @@ return [
                 'items' => [
                     ['', 0],
                 ],
+                'default' => 0,
                 'foreign_table' => Category::TABLE_NAME,
                 'foreign_table_where' => 'AND ' . Category::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
                     Category::TABLE_NAME . '.sys_language_uid IN (-1,0)',

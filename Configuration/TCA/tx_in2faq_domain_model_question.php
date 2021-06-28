@@ -60,6 +60,7 @@ return [
                 'items' => [
                     ['', 0],
                 ],
+                'default' => 0,
                 'foreign_table' => Question::TABLE_NAME,
                 'foreign_table_where' => 'AND ' . Question::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
                     Question::TABLE_NAME . '.sys_language_uid IN (-1,0)',

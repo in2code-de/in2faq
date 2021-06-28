@@ -1,18 +1,19 @@
 # EXT:in2faq
 
-To render questions and anwers as TYPO3 extension as a possible follower for irfaq.
+To render questions and answers as TYPO3 extension as a possible follower for EXT:irfaq.
 
 ## Explanation
 
-There are two plugins. The first shows you questions and answers. The second allows you to set a filter over your
-question list. There is a filter by searchterm and a categoryfilter.
+There are two plugins. The first plugin shows the questions and answers. The second allows you to set a filter over your
+question list. There is a filter by search term and a category filter.
 
-A commandcontroller allows you to import old irfaq records into new tables
+A command controller allows you to import old EXT:irfaq records into new tables
 
 ## Changelog
 
 | Version    | Date       | State      | Description                                                                                                                                                                                |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 4.1.3      | 2021-06-28 | Bugfix     | Set default value in TCA for `l10n_parent` |
 | 4.1.1      | 2019-04-08 | Bugfix     | Don't use same startpage for plugins when plugin is inserted more then once per page |
 | 4.1.0      | 2019-02-13 | Feature    | Pi2: Show categories from given startpoint. If empty, show all. Also pass tt_content.* to views. |
 | 4.0.1      | 2019-02-11 | Bugfix     | Remove unneeded version from composer.json. |

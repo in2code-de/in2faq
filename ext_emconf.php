@@ -4,7 +4,7 @@
 # Extension Manager/Repository config file for ext "in2faq". #
 ##############################################################
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
     'title' => 'in2faq',
     'description' => 'Simple and modern FAQ extension with a cli command to import faq from extension irfaq',
     'category' => 'misc',
@@ -14,11 +14,11 @@ $EM_CONF[$_EXTKEY] = array(
     'state' => 'stable',
     'author_company' => 'in2code GmbH',
     'version' => '4.1.2',
-    'constraints' => array(
-        'depends' => array(
+    'constraints' => [
+        'depends' => [
             'typo3' => '9.5.0-10.99.99',
-        ),
-        'conflicts' => array(),
-        'suggests' => array(),
-    ),
-);
+        ],
+        'conflicts' => [],
+        'suggests' => [],
+    ],
+];

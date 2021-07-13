@@ -2,6 +2,8 @@
 
 To render questions and answers as TYPO3 extension as a possible follower for EXT:irfaq.
 
+![Example output of the faq extension](Documentation/Images/screenshot_in2faq_frontend.png "Example output")
+
 ## Explanation
 
 There are two plugins. The first plugin shows the questions and answers. The second allows you to set a filter over your
@@ -13,6 +15,7 @@ A command controller allows you to import old EXT:irfaq records into new tables
 
 | Version    | Date       | State      | Description                                                                                                                                                                                |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 4.1.4      | 2021-07-13 | Task       | Small code cleanup |
 | 4.1.3      | 2021-06-28 | Bugfix     | Set default value in TCA for `l10n_parent` |
 | 4.1.1      | 2019-04-08 | Bugfix     | Don't use same startpage for plugins when plugin is inserted more then once per page |
 | 4.1.0      | 2019-02-13 | Feature    | Pi2: Show categories from given startpoint. If empty, show all. Also pass tt_content.* to views. |

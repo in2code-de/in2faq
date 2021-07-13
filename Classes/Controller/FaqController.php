@@ -5,11 +5,10 @@ namespace In2code\In2faq\Controller;
 use In2code\In2faq\Domain\Factory\FilterFactory;
 use In2code\In2faq\Domain\Model\Dto\Filter;
 use In2code\In2faq\Domain\Repository\CategoryRepository;
-use In2code\In2faq\Domain\Repository\QuestionRepository;
 use In2code\In2faq\Utility\ObjectUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException;
-use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Object\Exception;
 
 /**
  * Class FaqController
@@ -20,6 +19,7 @@ class FaqController extends ActionController
     /**
      * @return void
      * @throws InvalidArgumentNameException
+     * @throws Exception
      * @noinspection PhpUnused
      */
     public function initializeListAction(): void
@@ -28,6 +28,9 @@ class FaqController extends ActionController
     }
 
     /**
+     * List action to list questions.
+     * Note: Questions are delivered with $filter->getQuestions() in view
+     *
      * @param Filter $filter
      * @return void
      * @noinspection PhpUnused
@@ -43,6 +46,7 @@ class FaqController extends ActionController
     /**
      * @return void
      * @throws InvalidArgumentNameException
+     * @throws Exception
      * @noinspection PhpUnused
      */
     public function initializeFilterAction(): void
@@ -53,14 +57,14 @@ class FaqController extends ActionController
     /**
      * @param Filter $filter
      * @return void
-     * @throws InvalidQueryException
      * @noinspection PhpUnused
+     * @throws Exception
      */
     public function filterAction(Filter $filter): void
     {
-        $questionRepository = ObjectUtility::getObjectManager()->get(CategoryRepository::class);
+        $categoryRepository = ObjectUtility::getObjectManager()->get(CategoryRepository::class);
         $data = $this->configurationManager->getContentObject()->data;
-        $categories = $questionRepository->findBySettings($this->settings, $data);
+        $categories = $categoryRepository->findBySettings($this->settings, $data);
         $this->view->assignMultiple([
             'categories' => $categories,
             'filter' => $filter,
@@ -71,6 +75,7 @@ class FaqController extends ActionController
     /**
      * @return void
      * @throws InvalidArgumentNameException
+     * @throws Exception
      */
     protected function initializeFilterObject(): void
     {

@@ -29,11 +29,5 @@ call_user_func(
                 'Faq' => 'filter'
             ]
         );
-
-        /**
-         * CommandController for importer tasks
-         */
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] =
-            \In2code\In2faq\Command\ImportFromIrfaqCommandController::class;
     }
 );

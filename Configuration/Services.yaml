@@ -1,0 +1,9 @@
+services:
+
+  In2code\In2faq\Command\ImportFromIrfaqCommand:
+    tags:
+      - name: 'console.command'
+        command: 'in2faq:importIrFaq'
+        description: 'Imports records from EXT:irfaq'
+        # not required, defaults to false
+        hidden: false

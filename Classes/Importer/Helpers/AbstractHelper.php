@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\In2faq\Importer\Helpers;
 
 /**
@@ -11,12 +13,12 @@ abstract class AbstractHelper implements HelperInterface
     /**
      * @param array
      */
-    protected $newProperties = [];
+    protected array $newProperties = [];
 
     /**
      * @param array
      */
-    protected $oldProperties = [];
+    protected array $oldProperties = [];
 
     /**
      * AbstractHelper constructor.
@@ -50,21 +52,5 @@ abstract class AbstractHelper implements HelperInterface
     public function getOldProperties()
     {
         return $this->oldProperties;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOldKey()
-    {
-        return $this->oldKey;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNewKey()
-    {
-        return $this->newKey;
     }
 }

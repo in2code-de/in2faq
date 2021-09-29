@@ -15,6 +15,7 @@ A command controller allows you to import old EXT:irfaq records into new tables
 
 | Version    | Date       | State      | Description                                                                                                                                                                                |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 5.0.0      | 2021-09-29 | Breaking   | New major release: Drop support for TYPO3 V8 and V9; Compatible with TYPO3 V11; 2 new plugins; Support slugs (incl. upgrade wizard); |
 | 4.1.4      | 2021-07-13 | Task       | Small code cleanup |
 | 4.1.3      | 2021-06-28 | Bugfix     | Set default value in TCA for `l10n_parent` |
 | 4.1.1      | 2019-04-08 | Bugfix     | Don't use same startpage for plugins when plugin is inserted more then once per page |

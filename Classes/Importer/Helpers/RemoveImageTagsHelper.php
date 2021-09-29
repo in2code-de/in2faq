@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\In2faq\Importer\Helpers;
 
 /**
@@ -13,7 +15,7 @@ class RemoveImageTagsHelper extends AbstractHelper
      *
      * @var array
      */
-    protected $allowedTags = [
+    protected array $allowedTags = [
         '<div>',
         '<br>',
         '<p>',
@@ -44,7 +46,7 @@ class RemoveImageTagsHelper extends AbstractHelper
      * @param string $value
      * @return string
      */
-    public function parseValue($value)
+    public function parseValue($value): string
     {
         return strip_tags($value, implode('', $this->allowedTags));
     }

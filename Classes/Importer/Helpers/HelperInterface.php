@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\In2faq\Importer\Helpers;
 
 /**
@@ -18,5 +20,5 @@ interface HelperInterface
      * @param string $value
      * @return string
      */
-    public function parseValue($value);
+    public function parseValue($value): string;
 }

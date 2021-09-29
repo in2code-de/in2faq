@@ -1,5 +1,5 @@
 <?php
-if (!defined('TYPO3_MODE')) {
+if (!defined('TYPO3')) {
     die('Access denied.');
 }
 
@@ -10,30 +10,44 @@ call_user_func(
          * Include Frontend Plugins
          */
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'In2code.in2faq',
+            'In2faq',
             'Pi1',
             [
-                'Faq' => 'list'
+                \In2code\In2faq\Controller\FaqController::class => 'list'
             ],
             [
-                'Faq' => 'list'
+                \In2code\In2faq\Controller\FaqController::class => 'list'
             ]
         );
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'In2code.in2faq',
+            'In2faq',
             'Pi2',
             [
-                'Faq' => 'filter'
+                \In2code\In2faq\Controller\FaqController::class => 'filter'
             ],
             [
-                'Faq' => 'filter'
+                \In2code\In2faq\Controller\FaqController::class => 'filter'
+            ]
+        );
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'In2faq',
+            'Pi3',
+            [
+                \In2code\In2faq\Controller\FaqController::class => 'detail'
+            ],
+            [
+                \In2code\In2faq\Controller\FaqController::class => 'detail'
+            ]
+        );
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'In2faq',
+            'Pi4',
+            [
+                \In2code\In2faq\Controller\FaqController::class => 'list'
             ]
         );
 
-        /**
-         * CommandController for importer tasks
-         */
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] =
-            \In2code\In2faq\Command\ImportFromIrfaqCommandController::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['in2faqSlug']
+            = \In2code\In2faq\Updates\FaqSlugUpdater::class;
     }
 );

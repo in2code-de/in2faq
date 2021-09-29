@@ -24,14 +24,10 @@ return [
         ],
         'iconfile' => 'EXT:in2faq/Resources/Public/Icons/' . Question::TABLE_NAME . '.svg'
     ],
-    'interface' => [
-        'showRecordFieldList' =>
-            'l10n_parent, sys_language_uid, hidden, question, answer, categories',
-    ],
     'types' => [
         '1' => [
             'showitem' =>
-                'l10n_parent, sys_language_uid, question, answer, categories'
+                'l10n_parent, sys_language_uid, question, path_segment, answer, categories'
         ],
     ],
     'columns' => [
@@ -52,7 +48,6 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 1,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
@@ -134,5 +129,22 @@ return [
                 'maxitems' => 9999,
             ],
         ],
+        'path_segment' => [
+            'label' => 'LLL:EXT:in2faq/Resources/Private/Language/locallang_db.xlf:'
+                . Question::TABLE_NAME . '.path_segment',
+            'exclude' => true,
+            'config' => [
+                'type' => 'slug',
+                'size' => 50,
+                'generatorOptions' => [
+                    'fields' => [
+                        'question'
+                    ]
+                ],
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueInPid',
+                'default' => ''
+            ]
+        ]
     ],
 ];

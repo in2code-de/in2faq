@@ -1,0 +1,17 @@
+routeEnhancers:
+  FaqDetail:
+    type: Extbase
+    extension: In2faq
+    plugin: Pi3
+    defaultController: 'Faq::detail'
+    routes:
+      - routePath: '/faq/{faq_question}'
+        _controller: 'Faq::detail'
+        _arguments:
+          faq_question: question
+    aspects:
+      faq_question:
+        type: PersistedAliasMapper
+        tableName: 'tx_in2faq_domain_model_question'
+        routeFieldName: 'path_segment'
+        routeValuePrefix: '/'

@@ -18,13 +18,4 @@ class ObjectUtility
     {
         return GeneralUtility::makeInstance(ObjectManager::class);
     }
-
-    /**
-     * @return TypoScriptFrontendController
-     * @SuppressWarnings(PHPMD.Superglobals)
-     */
-    public static function getTyposcriptFrontendController(): ?TypoScriptFrontendController
-    {
-        return array_key_exists('TSFE', $GLOBALS) ? $GLOBALS['TSFE'] : null;
-    }
 }

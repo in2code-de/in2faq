@@ -69,7 +69,7 @@
 				<source>Show category filter</source>
 			</trans-unit>
 			<trans-unit id="flexform.pi2.main.categories">
-				<source>Show only this categoris for filter (empty = show all)</source>
+				<source>Show only this categories for filter (empty = show all)</source>
 			</trans-unit>
 		</body>
 	</file>

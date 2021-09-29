@@ -90,7 +90,7 @@
 				<target state="translated">Zeige Kategoriefilter</target>
 			</trans-unit>
 			<trans-unit id="flexform.pi2.main.categories">
-				<source>Show only this categoris for filter (empty = show all)</source>
+				<source>Show only this categories for filter (empty = show all)</source>
 				<target state="translated">Zeige nur diese Kategorien für Filter (leer = zeige alle)</target>
 			</trans-unit>
 		</body>

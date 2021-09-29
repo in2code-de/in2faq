@@ -6,6 +6,7 @@ if (!defined('TYPO3')) {
 call_user_func(
     function () {
 
+        $ll = 'LLL:EXT:in2faq/Resources/Private/Language/locallang_db.xlf:';
         /**
          * Disable non needed fields in tt_content
          */
@@ -15,9 +16,9 @@ call_user_func(
         /**
          * Include Plugins
          */
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi1', 'FAQ');
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi2', 'FAQ Filter');
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi3', 'FAQ Detail');
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi1', $ll . 'plugin.list_uncached');
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi2', $ll . 'plugin.filter');
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi3', $ll . 'plugin.detail');
 
         /**
          * Flexform

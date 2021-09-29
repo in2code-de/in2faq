@@ -3,6 +3,19 @@
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-05-02T12:00:00Z" product-name="in2faq">
 		<header/>
 		<body>
+			<trans-unit id="plugin.list_uncached">
+				<source>FAQ List View (uncached for filter)</source>
+				<target>FAQ Liste (ungecached für Filter)</target>
+			</trans-unit>
+			<trans-unit id="plugin.filter">
+				<source>FAQ Filter</source>
+				<target>FAQ Filter</target>
+			</trans-unit>
+			<trans-unit id="plugin.detail">
+				<source>FAQ Detail View</source>
+				<target>FAQ Detailansicht</target>
+			</trans-unit>
+
 			<trans-unit id="tx_in2faq_domain_model_question">
 				<source>Question/Answer</source>
 				<target state="translated">Frage/Antwort</target>

@@ -1,0 +1,16 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true" lang="en">
+
+    <f:if condition="{question}">
+        <f:then>
+            <h4>{question.question}</h4>
+            <div>
+                <f:format.html parseFuncTSPath="lib.parseFunc">{question.answer}</f:format.html>
+            </div>
+        </f:then>
+    <f:else>
+        Question not found
+    </f:else>
+    </f:if>
+
+</html>

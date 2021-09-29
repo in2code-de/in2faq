@@ -17,6 +17,7 @@ call_user_func(
          */
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi1', 'FAQ');
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi2', 'FAQ Filter');
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('in2faq', 'Pi3', 'FAQ Detail');
 
         /**
          * Flexform

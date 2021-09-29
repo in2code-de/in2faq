@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace In2code\In2faq\Controller;
 
 use In2code\In2faq\Domain\Factory\FilterFactory;
@@ -35,7 +37,7 @@ class FaqController extends ActionController
      * @return void
      * @noinspection PhpUnused
      */
-    public function listAction(Filter $filter): void
+    public function listAction(Filter $filter)
     {
         $this->view->assignMultiple([
             'filter' => $filter,
@@ -60,7 +62,7 @@ class FaqController extends ActionController
      * @noinspection PhpUnused
      * @throws Exception
      */
-    public function filterAction(Filter $filter): void
+    public function filterAction(Filter $filter)
     {
         $categoryRepository = ObjectUtility::getObjectManager()->get(CategoryRepository::class);
         $data = $this->configurationManager->getContentObject()->data;

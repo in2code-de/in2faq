@@ -4,6 +4,7 @@ namespace In2code\In2faq\Utility;
 
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Class FrontendUtility
@@ -41,15 +42,23 @@ class FrontendUtility
      */
     protected static function getArgumentsFromTyposcriptFrontendController(string $key): array
     {
-        $typoScriptFrontend = ObjectUtility::getTyposcriptFrontendController();
+        $typoScriptFrontend = self::getTyposcriptFrontendController();
         if ($typoScriptFrontend !== null) {
-            /** @var PageArguments $pageArguments */
-            $pageArguments = $typoScriptFrontend->pageArguments;
+            $pageArguments = $typoScriptFrontend->getPageArguments();
             $arguments = $pageArguments->getArguments();
             if (array_key_exists($key, $arguments)) {
                 return (array)$arguments[$key];
             }
         }
         return [];
+    }
+
+    /**
+     * @return TypoScriptFrontendController
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
+    public static function getTyposcriptFrontendController(): ?TypoScriptFrontendController
+    {
+        return array_key_exists('TSFE', $GLOBALS) ? $GLOBALS['TSFE'] : null;
     }
 }

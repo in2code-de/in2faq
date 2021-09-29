@@ -1,5 +1,5 @@
 <?php
-if (!defined('TYPO3_MODE')) {
+if (!defined('TYPO3')) {
     die('Access denied.');
 }
 
@@ -10,23 +10,23 @@ call_user_func(
          * Include Frontend Plugins
          */
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'In2code.in2faq',
+            'In2faq',
             'Pi1',
             [
-                'Faq' => 'list'
+                \In2code\In2faq\Controller\FaqController::class => 'list'
             ],
             [
-                'Faq' => 'list'
+                \In2code\In2faq\Controller\FaqController::class => 'list'
             ]
         );
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'In2code.in2faq',
+            'In2faq',
             'Pi2',
             [
-                'Faq' => 'filter'
+                \In2code\In2faq\Controller\FaqController::class => 'filter'
             ],
             [
-                'Faq' => 'filter'
+                \In2code\In2faq\Controller\FaqController::class => 'filter'
             ]
         );
     }

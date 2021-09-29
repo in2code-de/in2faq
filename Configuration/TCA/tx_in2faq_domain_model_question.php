@@ -24,10 +24,6 @@ return [
         ],
         'iconfile' => 'EXT:in2faq/Resources/Public/Icons/' . Question::TABLE_NAME . '.svg'
     ],
-    'interface' => [
-        'showRecordFieldList' =>
-            'l10n_parent, sys_language_uid, hidden, question, answer, categories',
-    ],
     'types' => [
         '1' => [
             'showitem' =>
@@ -52,7 +48,6 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 1,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',

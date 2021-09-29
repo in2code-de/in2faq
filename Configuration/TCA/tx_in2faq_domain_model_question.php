@@ -27,7 +27,7 @@ return [
     'types' => [
         '1' => [
             'showitem' =>
-                'l10n_parent, sys_language_uid, question, answer, categories'
+                'l10n_parent, sys_language_uid, question, path_segment, answer, categories'
         ],
     ],
     'columns' => [
@@ -129,5 +129,22 @@ return [
                 'maxitems' => 9999,
             ],
         ],
+        'path_segment' => [
+            'label' => 'LLL:EXT:in2faq/Resources/Private/Language/locallang_db.xlf:'
+                . Question::TABLE_NAME . '.path_segment',
+            'exclude' => true,
+            'config' => [
+                'type' => 'slug',
+                'size' => 50,
+                'generatorOptions' => [
+                    'fields' => [
+                        'question'
+                    ]
+                ],
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueInPid',
+                'default' => ''
+            ]
+        ]
     ],
 ];

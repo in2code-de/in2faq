@@ -48,6 +48,10 @@
 				<source>Expert</source>
 				<target state="translated">Experte</target>
 			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_question.path_segment">
+				<source>Path segment</source>
+				<target>Pfadsegment</target>
+			</trans-unit>
 			<trans-unit id="tx_in2faq_domain_model_category">
 				<source>Category</source>
 				<target state="translated">Kategorie</target>

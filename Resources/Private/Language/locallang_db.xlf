@@ -37,6 +37,9 @@
 			<trans-unit id="tx_in2faq_domain_model_question.expert">
 				<source>Expert</source>
 			</trans-unit>
+			<trans-unit id="tx_in2faq_domain_model_question.path_segment">
+				<source>Path segment</source>
+			</trans-unit>
 			<trans-unit id="tx_in2faq_domain_model_category">
 				<source>Category</source>
 			</trans-unit>

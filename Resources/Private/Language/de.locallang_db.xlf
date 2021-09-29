@@ -7,6 +7,10 @@
 				<source>FAQ List View (uncached for filter)</source>
 				<target>FAQ Liste (ungecached für Filter)</target>
 			</trans-unit>
+			<trans-unit id="plugin.list_cached">
+				<source>FAQ List View (cached)</source>
+				<target>FAQ Liste (gecached)</target>
+			</trans-unit>
 			<trans-unit id="plugin.filter">
 				<source>FAQ Filter</source>
 				<target>FAQ Filter</target>

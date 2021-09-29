@@ -39,5 +39,12 @@ call_user_func(
                 \In2code\In2faq\Controller\FaqController::class => 'detail'
             ]
         );
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'In2faq',
+            'Pi4',
+            [
+                \In2code\In2faq\Controller\FaqController::class => 'list'
+            ]
+        );
     }
 );

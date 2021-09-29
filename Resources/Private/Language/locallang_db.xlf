@@ -6,6 +6,9 @@
 			<trans-unit id="plugin.list_uncached">
 				<source>FAQ List View (uncached for filter)</source>
 			</trans-unit>
+			<trans-unit id="plugin.list_cached">
+				<source>FAQ List View (cached)</source>
+			</trans-unit>
 			<trans-unit id="plugin.filter">
 				<source>FAQ Filter</source>
 			</trans-unit>

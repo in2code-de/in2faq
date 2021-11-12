@@ -28,7 +28,6 @@ class Question extends AbstractImporter
         'a' => 'answer',
         'q_from' => 'question_from',
         'related_links' => 'related_links',
-        'expert' => 'expert'
     ];
 
     /**

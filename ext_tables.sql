@@ -4,8 +4,6 @@ CREATE TABLE tx_in2faq_domain_model_question (
 	question_from varchar(255) DEFAULT '' NOT NULL,
 	related_links varchar(255) DEFAULT '' NOT NULL,
 	path_segment varchar(255) DEFAULT '' NOT NULL,
-
-	expert int(11) unsigned DEFAULT '0' NOT NULL,
 	categories int(11) unsigned DEFAULT '0' NOT NULL
 );
 

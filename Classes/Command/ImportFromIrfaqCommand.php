@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace In2code\In2faq\Command;
 
 use In2code\In2faq\Importer\Category;
-use In2code\In2faq\Importer\Expert;
 use In2code\In2faq\Importer\Question;
 use In2code\In2faq\Importer\QuestionCategory;
 use In2code\In2faq\Utility\ObjectUtility;
@@ -46,7 +45,6 @@ class ImportFromIrfaqCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         $io->writeln($this->importCategories($dryrun, $forcePid));
-        $io->writeln($this->importExperts($dryrun, $forcePid));
         $io->writeln($this->importQuestions($dryrun, $forcePid));
         $io->writeln($this->importQuestionCategoriesRelation($dryrun, $forcePid));
 
@@ -65,20 +63,6 @@ class ImportFromIrfaqCommand extends Command
     {
         $importer = ObjectUtility::getObjectManager()->get(Category::class);
         return  $importer->import($dryrun, $forcePid);
-    }
-
-    /**
-     * Import experts
-     *
-     * @param boolean $dryrun
-     * @param int|null $forcePid Force import of all records to a pid
-     * @return string
-     * @throws \Exception
-     */
-    protected function importExperts($dryrun, $forcePid): string
-    {
-        $importer = ObjectUtility::getObjectManager()->get(Expert::class);
-        return $importer->import($dryrun, $forcePid);
     }
 
     /**

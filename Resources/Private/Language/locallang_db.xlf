@@ -34,9 +34,6 @@
 			<trans-unit id="tx_in2faq_domain_model_question.categories">
 				<source>Categories</source>
 			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_question.expert">
-				<source>Expert</source>
-			</trans-unit>
 			<trans-unit id="tx_in2faq_domain_model_question.path_segment">
 				<source>Path segment</source>
 			</trans-unit>
@@ -47,21 +44,6 @@
 				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="tx_in2faq_domain_model_category.uri">
-				<source>URI</source>
-			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_category.expert">
-				<source>Expert</source>
-			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_expert">
-				<source>Expert</source>
-			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_expert.name">
-				<source>Name</source>
-			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_expert.email">
-				<source>Email</source>
-			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_expert.uri">
 				<source>URI</source>
 			</trans-unit>
 

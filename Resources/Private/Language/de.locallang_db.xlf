@@ -44,10 +44,6 @@
 				<source>Categories</source>
 				<target state="translated">Kategorien</target>
 			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_question.expert">
-				<source>Expert</source>
-				<target state="translated">Experte</target>
-			</trans-unit>
 			<trans-unit id="tx_in2faq_domain_model_question.path_segment">
 				<source>Path segment</source>
 				<target>Pfadsegment</target>
@@ -61,26 +57,6 @@
 				<target state="translated">Bezeichnung</target>
 			</trans-unit>
 			<trans-unit id="tx_in2faq_domain_model_category.uri">
-				<source>URI</source>
-				<target state="translated">Link</target>
-			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_category.expert">
-				<source>Expert</source>
-				<target state="translated">Experte</target>
-			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_expert">
-				<source>Expert</source>
-				<target state="translated">Experte</target>
-			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_expert.name">
-				<source>Name</source>
-				<target state="translated">Name</target>
-			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_expert.email">
-				<source>Email</source>
-				<target state="translated">E-Mail</target>
-			</trans-unit>
-			<trans-unit id="tx_in2faq_domain_model_expert.uri">
 				<source>URI</source>
 				<target state="translated">Link</target>
 			</trans-unit>

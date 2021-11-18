@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\In2faq\Command;
 
+use Exception;
 use In2code\In2faq\Importer\Category;
-use In2code\In2faq\Importer\Expert;
 use In2code\In2faq\Importer\Question;
 use In2code\In2faq\Importer\QuestionCategory;
 use In2code\In2faq\Utility\ObjectUtility;
@@ -20,11 +20,13 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class ImportFromIrfaqCommand extends Command
 {
-
+    /**
+     * @return void
+     */
     protected function configure()
     {
         $this->setHelp('Imports existing irfaq records');
-        $this->addOption('dryRun', null, InputOption::VALUE_OPTIONAL,'Set if you want a dry-run', false);
+        $this->addOption('dryRun', null, InputOption::VALUE_OPTIONAL, 'Set if you want a dry-run', false);
         $this->addOption('forcePid', null, InputOption::VALUE_OPTIONAL, 'Set if you want to import to a specific pid.');
     }
 
@@ -35,8 +37,10 @@ class ImportFromIrfaqCommand extends Command
      *  to new tables (like tx_in2faq_domain_model_question, etc...).
      *  Warning: New tables will be truncated before import!!
      *
+     * @param InputInterface $input
+     * @param OutputInterface $output
      * @return int
-     * @throws \Exception
+     * @throws Exception
      */
     public function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -46,7 +50,6 @@ class ImportFromIrfaqCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         $io->writeln($this->importCategories($dryrun, $forcePid));
-        $io->writeln($this->importExperts($dryrun, $forcePid));
         $io->writeln($this->importQuestions($dryrun, $forcePid));
         $io->writeln($this->importQuestionCategoriesRelation($dryrun, $forcePid));
 
@@ -56,10 +59,10 @@ class ImportFromIrfaqCommand extends Command
     /**
      * Import categories
      *
-     * @param boolean $dryrun
+     * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     protected function importCategories($dryrun, $forcePid): string
     {
@@ -68,26 +71,12 @@ class ImportFromIrfaqCommand extends Command
     }
 
     /**
-     * Import experts
-     *
-     * @param boolean $dryrun
-     * @param int|null $forcePid Force import of all records to a pid
-     * @return string
-     * @throws \Exception
-     */
-    protected function importExperts($dryrun, $forcePid): string
-    {
-        $importer = ObjectUtility::getObjectManager()->get(Expert::class);
-        return $importer->import($dryrun, $forcePid);
-    }
-
-    /**
      * Import questions
      *
-     * @param boolean $dryrun
+     * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     protected function importQuestions($dryrun, $forcePid): string
     {
@@ -98,10 +87,10 @@ class ImportFromIrfaqCommand extends Command
     /**
      * Import relations between questions and categories
      *
-     * @param boolean $dryrun
+     * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     protected function importQuestionCategoriesRelation($dryrun, $forcePid): string
     {

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\In2faq\Importer\Helpers;
 
@@ -9,13 +9,12 @@ namespace In2code\In2faq\Importer\Helpers;
  */
 class RemoveImageTagsHelper extends AbstractHelper
 {
-
     /**
      * Allowed tags for RTE
      *
      * @var array
      */
-    protected array $allowedTags = [
+    protected $allowedTags = [
         '<div>',
         '<br>',
         '<p>',

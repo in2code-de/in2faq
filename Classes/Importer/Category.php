@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\In2faq\Importer;
 
@@ -12,17 +12,17 @@ class Category extends AbstractImporter
     /**
      * @var string
      */
-    protected string $tableNameOld = 'tx_irfaq_cat';
+    protected $tableNameOld = 'tx_irfaq_cat';
 
     /**
      * @var string
      */
-    protected string $tableName = 'tx_in2faq_domain_model_category';
+    protected $tableName = 'tx_in2faq_domain_model_category';
 
     /**
      * @var array
      */
-    protected array $mapping = [
+    protected $mapping = [
         'sorting' => 'sorting',
         'title' => 'title',
         'shortcut' => 'uri'

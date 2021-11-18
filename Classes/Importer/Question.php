@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\In2faq\Importer;
 
@@ -12,29 +12,28 @@ class Question extends AbstractImporter
     /**
      * @var string
      */
-    protected string $tableNameOld = 'tx_irfaq_q';
+    protected $tableNameOld = 'tx_irfaq_q';
 
     /**
      * @var string
      */
-    protected string $tableName = 'tx_in2faq_domain_model_question';
+    protected $tableName = 'tx_in2faq_domain_model_question';
 
     /**
      * @var array
      */
-    protected array $mapping = [
+    protected $mapping = [
         'sorting' => 'sorting',
         'q' => 'question',
         'a' => 'answer',
         'q_from' => 'question_from',
         'related_links' => 'related_links',
-        'expert' => 'expert'
     ];
 
     /**
      * @var array
      */
-    protected array $helpers = [
+    protected $helpers = [
         'answer' => 'RemoveImageTagsHelper'
     ];
 }

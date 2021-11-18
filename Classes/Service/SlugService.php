@@ -2,6 +2,8 @@
 
 namespace In2code\In2faq\Service;
 
+use Doctrine\DBAL\Driver\Statement;
+use PDO;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -10,17 +12,18 @@ use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * This file is part of the "in2faq" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
+ * Class SlugService
  */
 class SlugService
 {
+    /**
+     * @var SlugHelper
+     */
+    protected $slugService;
 
-    /** @var SlugHelper */
-    protected SlugHelper $slugService;
-
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $fieldConfig = $GLOBALS['TCA']['tx_in2faq_domain_model_question']['columns']['path_segment']['config'];
@@ -39,7 +42,7 @@ class SlugService
             ->from('tx_in2faq_domain_model_question')
             ->where(
                 $queryBuilder->expr()->orX(
-                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)),
+                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', PDO::PARAM_STR)),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
@@ -63,7 +66,7 @@ class SlugService
             ->from('tx_in2faq_domain_model_question')
             ->where(
                 $queryBuilder->expr()->orX(
-                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)),
+                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', PDO::PARAM_STR)),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
@@ -76,7 +79,7 @@ class SlugService
                     ->where(
                         $queryBuilder->expr()->eq(
                             'uid',
-                            $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
+                            $queryBuilder->createNamedParameter($record['uid'], PDO::PARAM_INT)
                         )
                     )
                     ->set('path_segment', $this->getUniqueValue($record['uid'], $slug));
@@ -113,12 +116,13 @@ class SlugService
     /**
      * @param int $uid
      * @param string $slug
-     * @return \Doctrine\DBAL\Driver\Statement|int
+     * @return Statement|int
      */
     protected function getUniqueCountStatement(int $uid, string $slug)
     {
         /** @var QueryBuilder $queryBuilder */
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_in2faq_domain_model_question');
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_in2faq_domain_model_question');
         /** @var DeletedRestriction $deleteRestriction */
         $deleteRestriction = GeneralUtility::makeInstance(DeletedRestriction::class);
         $queryBuilder->getRestrictions()->removeAll()->add($deleteRestriction);
@@ -129,9 +133,9 @@ class SlugService
             ->where(
                 $queryBuilder->expr()->eq(
                     'path_segment',
-                    $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)
+                    $queryBuilder->createPositionalParameter($slug)
                 ),
-                $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, \PDO::PARAM_INT))
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, PDO::PARAM_INT))
             )->execute();
     }
 }

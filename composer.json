@@ -1,25 +1,58 @@
 {
   "name": "in2code/in2faq",
-  "description": "Simple and modern FAQ extension with a cli command to import faq from extension irfaq",
+  "description": "Simple FAQ extension with a cli command to import faq from extension irfaq",
   "authors": [
     {
-      "name": "In2code GmbH",
-      "email": "service@in2code.de"
+      "name": "Alex Kellner",
+      "email": "alexander.kellner@in2code.de",
+      "role": "Technical owner",
+      "homepage": "https://www.in2code.de"
+    },
+    {
+      "name": "Marcus Schwemer",
+      "email": "marcus.schwemer@in2code.de",
+      "role": "Developer",
+      "homepage": "https://www.in2code.de"
     }
   ],
   "type": "typo3-cms-extension",
   "license": "GPL-3.0",
   "require": {
     "php": "^7.2",
-    "typo3/cms-core": "^10.4 || ^11.4"
+    "typo3/cms-core": "^10.4 || ^11.4",
+    "ext-pdo": "*"
+  },
+  "require-dev": {
+    "typo3/cms-core": "^10.4",
+    "nimut/testing-framework": "^5.0",
+    "mikey179/vfsstream": "^1.6",
+    "phpunit/phpunit": "^6.0",
+    "squizlabs/php_codesniffer": "^3.5",
+    "phpmd/phpmd": "^2.8",
+    "friendsofphp/php-cs-fixer": "^3.3",
+    "helmich/typo3-typoscript-lint": "^2.5"
   },
   "autoload": {
     "psr-4": {
       "In2code\\In2faq\\": "Classes"
     }
   },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin"
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "mkdir -p .Build/public/typo3conf/ext/",
+      "[ -L .Build/public/typo3conf/ext/in2faq ] || ln -snvf ../../../../. .Build/public/typo3conf/ext/in2faq"
+    ],
+    "test:php:cs": "php-cs-fixer fix --dry-run --config=.project/tests/.php-cs-fixer.php --diff",
+    "test:php:lint": "find *.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
+    "test:ts:lint": "typoscript-lint -c .project/tests/typoscript-lint.yml --fail-on-warnings"
+  },
   "extra": {
     "typo3/cms": {
+      "web-dir": ".Build/public",
       "extension-key": "in2faq"
     }
   }

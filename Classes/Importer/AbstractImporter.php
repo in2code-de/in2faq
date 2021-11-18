@@ -1,15 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\In2faq\Importer;
 
 use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Driver\Exception as ExceptionDbalDriver;
+use Exception;
 use In2code\In2faq\Importer\Helpers\AbstractHelper;
 use In2code\In2faq\Importer\Helpers\HelperInterface;
 use In2code\In2faq\Utility\DatabaseUtility;
 use In2code\In2faq\Utility\ObjectUtility;
-use phpDocumentor\Reflection\DocBlock\StandardTagFactory;
 
 /**
  * Class AbstractImporter
@@ -21,14 +22,14 @@ abstract class AbstractImporter implements ImporterInterface
      *
      * @var string
      */
-    protected string $tableNameOld = '';
+    protected $tableNameOld = '';
 
     /**
      * Table where to import
      *
      * @var string
      */
-    protected string $tableName = '';
+    protected $tableName = '';
 
     /**
      * Fields that should be imported by default in every table
@@ -38,7 +39,7 @@ abstract class AbstractImporter implements ImporterInterface
      *
      * @var array
      */
-    protected array $defaultMapping = [
+    protected $defaultMapping = [
         'uid' => 'uid',
         'pid' => 'pid',
         'tstamp' => 'tstamp',
@@ -57,7 +58,7 @@ abstract class AbstractImporter implements ImporterInterface
      *
      * @var array
      */
-    protected array $mapping = [];
+    protected $mapping = [];
 
     /**
      * Helper functions mapped on single fields
@@ -67,22 +68,22 @@ abstract class AbstractImporter implements ImporterInterface
      *
      * @var array
      */
-    protected array $helpers = [];
+    protected $helpers = [];
 
     /**
      * @var string
      */
-    protected string $helperPrefix = 'In2code\\In2faq\\Importer\\Helpers\\';
+    protected $helperPrefix = 'In2code\\In2faq\\Importer\\Helpers\\';
 
     /**
      * @var string
      */
-    protected string $helperInterface = HelperInterface::class;
+    protected $helperInterface = HelperInterface::class;
 
     /**
      * @var bool
      */
-    protected bool $truncateBeforeImport = true;
+    protected $truncateBeforeImport = true;
 
     /**
      * Import from irfaq
@@ -90,10 +91,10 @@ abstract class AbstractImporter implements ImporterInterface
      * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
-     * @throws \Exception
-     * @throws \Doctrine\DBAL\Driver\Exception
+     * @throws Exception
+     * @throws ExceptionDbalDriver
      */
-    public function import($dryrun = false, $forcePid = null): string
+    public function import(bool $dryrun = false, int $forcePid = null): string
     {
         $rows = $this->getOldRows();
         if (!$dryrun) {
@@ -110,7 +111,7 @@ abstract class AbstractImporter implements ImporterInterface
 
     /**
      * @return array
-     * @throws \Doctrine\DBAL\Driver\Exception
+     * @throws ExceptionDbalDriver
      */
     protected function getOldRows(): array
     {
@@ -125,7 +126,7 @@ abstract class AbstractImporter implements ImporterInterface
     /**
      * @param array $row
      * @param int|null $forcePid Force import of all records to a pid
-     * @throws \Exception
+     * @throws Exception
      */
     protected function importRow(array $row, ?int $forcePid): void
     {
@@ -137,7 +138,7 @@ abstract class AbstractImporter implements ImporterInterface
      * @param array $row
      * @param int|null $forcePid Force import of all records to a pid
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     protected function getFieldArray(array $row, ?int $forcePid): array
     {
@@ -151,21 +152,20 @@ abstract class AbstractImporter implements ImporterInterface
             $fieldArray['pid'] = $forcePid;
         }
         return $this->parseArrayByHelpers($fieldArray, $row);
-
     }
 
     /**
      * @param array $fieldArray
      * @param array $row
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     protected function parseArrayByHelpers(array $fieldArray, array $row): array
     {
         foreach ($this->helpers as $newFieldName => $helper) {
             $className = $this->helperPrefix . $helper;
             if (!class_exists($className)) {
-                throw new \Exception('Class ' . $className . ' does not exists');
+                throw new Exception('Class ' . $className . ' does not exists');
             }
             if (is_subclass_of($className, $this->helperInterface)) {
                 /** @var AbstractHelper $helperClass */
@@ -173,7 +173,7 @@ abstract class AbstractImporter implements ImporterInterface
                 $helperClass->initialize();
                 $fieldArray[$newFieldName] = $helperClass->parseValue($fieldArray[$newFieldName]);
             } else {
-                throw new \Exception('Class does not implement ' . $this->helperInterface);
+                throw new Exception('Class does not implement ' . $this->helperInterface);
             }
         }
         return $fieldArray;

@@ -9,7 +9,6 @@ return [
         'sortby' => 'sorting',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
-        'dividers2tabs' => true,
         'versioningWS' => true,
         'origUid' => 't3_origuid',
         'languageField' => 'sys_language_uid',
@@ -61,14 +60,6 @@ return [
             'config' => [
                 'type' => 'passthrough',
             ],
-        ],
-        't3ver_label' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.versionLabel',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'max' => 255,
-            ]
         ],
         'hidden' => [
             'exclude' => 1,

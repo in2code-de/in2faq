@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 namespace In2code\In2faq\Domain\Factory;
 
 use In2code\In2faq\Domain\Model\Category;

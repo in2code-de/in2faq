@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\In2faq\Controller;
 
@@ -19,8 +19,15 @@ use TYPO3\CMS\Extbase\Object\Exception;
  */
 class FaqController extends ActionController
 {
-    private QuestionRepository $questionRepository;
+    /**
+     * @var QuestionRepository
+     */
+    protected $questionRepository;
 
+    /**
+     * @param QuestionRepository $questionRepository
+     * @return void
+     */
     public function injectQuestionRepository(QuestionRepository $questionRepository)
     {
         $this->questionRepository = $questionRepository;
@@ -93,6 +100,10 @@ class FaqController extends ActionController
         $this->request->setArgument('filter', $filter);
     }
 
+    /**
+     * @param int $question
+     * @return void
+     */
     protected function detailAction(int $question = 0): void
     {
         $questionObject = $this->questionRepository->findByUid($question);

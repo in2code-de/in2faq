@@ -1,10 +1,18 @@
 {
   "name": "in2code/in2faq",
-  "description": "Simple and modern FAQ extension with a cli command to import faq from extension irfaq",
+  "description": "Simple FAQ extension with a cli command to import faq from extension irfaq",
   "authors": [
     {
-      "name": "In2code GmbH",
-      "email": "service@in2code.de"
+      "name": "Alex Kellner",
+      "email": "alexander.kellner@in2code.de",
+      "role": "Technical owner",
+      "homepage": "https://www.in2code.de"
+    },
+    {
+      "name": "Marcus Schwemer",
+      "email": "marcus.schwemer@in2code.de",
+      "role": "Developer",
+      "homepage": "https://www.in2code.de"
     }
   ],
   "type": "typo3-cms-extension",

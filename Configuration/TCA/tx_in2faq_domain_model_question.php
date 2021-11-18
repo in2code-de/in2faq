@@ -121,7 +121,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',
                 'foreign_table' => Category::TABLE_NAME,
-                'foreign_table_where' => ' ORDER BY ' . Category::TABLE_NAME . '.sorting ASC',
+                'foreign_table_where' => ' ORDER BY ' . Category::TABLE_NAME . '.title ASC',
                 'MM' => 'tx_in2faq_question_category_mm',
                 'size' => 10,
                 'autoSizeMax' => 50,

@@ -12,17 +12,17 @@ class Question extends AbstractImporter
     /**
      * @var string
      */
-    protected string $tableNameOld = 'tx_irfaq_q';
+    protected $tableNameOld = 'tx_irfaq_q';
 
     /**
      * @var string
      */
-    protected string $tableName = 'tx_in2faq_domain_model_question';
+    protected $tableName = 'tx_in2faq_domain_model_question';
 
     /**
      * @var array
      */
-    protected array $mapping = [
+    protected $mapping = [
         'sorting' => 'sorting',
         'q' => 'question',
         'a' => 'answer',
@@ -33,7 +33,7 @@ class Question extends AbstractImporter
     /**
      * @var array
      */
-    protected array $helpers = [
+    protected $helpers = [
         'answer' => 'RemoveImageTagsHelper'
     ];
 }

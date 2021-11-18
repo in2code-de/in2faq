@@ -9,7 +9,6 @@ namespace In2code\In2faq\Importer\Helpers;
  */
 class RemoveImageTagsHelper extends AbstractHelper
 {
-
     /**
      * Allowed tags for RTE
      *

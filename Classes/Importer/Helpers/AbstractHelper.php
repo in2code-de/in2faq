@@ -9,16 +9,15 @@ namespace In2code\In2faq\Importer\Helpers;
  */
 abstract class AbstractHelper implements HelperInterface
 {
+    /**
+     * @param array
+     */
+    protected $newProperties = [];
 
     /**
      * @param array
      */
-    protected array $newProperties = [];
-
-    /**
-     * @param array
-     */
-    protected array $oldProperties = [];
+    protected $oldProperties = [];
 
     /**
      * AbstractHelper constructor.

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace In2code\In2faq\Command;
 
+use Exception;
 use In2code\In2faq\Importer\Category;
 use In2code\In2faq\Importer\Question;
 use In2code\In2faq\Importer\QuestionCategory;
@@ -19,7 +20,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class ImportFromIrfaqCommand extends Command
 {
-
+    /**
+     * @return void
+     */
     protected function configure()
     {
         $this->setHelp('Imports existing irfaq records');
@@ -34,8 +37,10 @@ class ImportFromIrfaqCommand extends Command
      *  to new tables (like tx_in2faq_domain_model_question, etc...).
      *  Warning: New tables will be truncated before import!!
      *
+     * @param InputInterface $input
+     * @param OutputInterface $output
      * @return int
-     * @throws \Exception
+     * @throws Exception
      */
     public function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -57,7 +62,7 @@ class ImportFromIrfaqCommand extends Command
      * @param boolean $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     protected function importCategories($dryrun, $forcePid): string
     {
@@ -71,7 +76,7 @@ class ImportFromIrfaqCommand extends Command
      * @param boolean $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     protected function importQuestions($dryrun, $forcePid): string
     {
@@ -85,7 +90,7 @@ class ImportFromIrfaqCommand extends Command
      * @param boolean $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     protected function importQuestionCategoriesRelation($dryrun, $forcePid): string
     {

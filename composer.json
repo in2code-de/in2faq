@@ -10,8 +10,9 @@
   "type": "typo3-cms-extension",
   "license": "GPL-3.0",
   "require": {
-    "php": "^7.4",
-    "typo3/cms-core": "^10.4 || ^11.4"
+    "php": "^7.2",
+    "typo3/cms-core": "^10.4 || ^11.4",
+    "ext-pdo": "*"
   },
   "autoload": {
     "psr-4": {

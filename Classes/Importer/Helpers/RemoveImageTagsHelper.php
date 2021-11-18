@@ -14,7 +14,7 @@ class RemoveImageTagsHelper extends AbstractHelper
      *
      * @var array
      */
-    protected array $allowedTags = [
+    protected $allowedTags = [
         '<div>',
         '<br>',
         '<p>',

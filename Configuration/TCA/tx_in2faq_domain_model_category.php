@@ -6,7 +6,7 @@ return [
         'title' => 'LLL:EXT:in2faq/Resources/Private/Language/locallang_db.xlf:' . Category::TABLE_NAME,
         'label' => 'title',
         'tstamp' => 'tstamp',
-        'sortby' => 'sorting',
+        'default_sortby' => 'ORDER BY title ASC',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
         'versioningWS' => true,

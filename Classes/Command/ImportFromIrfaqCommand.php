@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace In2code\In2faq\Command;
 
@@ -26,7 +26,7 @@ class ImportFromIrfaqCommand extends Command
     protected function configure()
     {
         $this->setHelp('Imports existing irfaq records');
-        $this->addOption('dryRun', null, InputOption::VALUE_OPTIONAL,'Set if you want a dry-run', false);
+        $this->addOption('dryRun', null, InputOption::VALUE_OPTIONAL, 'Set if you want a dry-run', false);
         $this->addOption('forcePid', null, InputOption::VALUE_OPTIONAL, 'Set if you want to import to a specific pid.');
     }
 
@@ -59,7 +59,7 @@ class ImportFromIrfaqCommand extends Command
     /**
      * Import categories
      *
-     * @param boolean $dryrun
+     * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
      * @throws Exception
@@ -73,7 +73,7 @@ class ImportFromIrfaqCommand extends Command
     /**
      * Import questions
      *
-     * @param boolean $dryrun
+     * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
      * @throws Exception
@@ -87,7 +87,7 @@ class ImportFromIrfaqCommand extends Command
     /**
      * Import relations between questions and categories
      *
-     * @param boolean $dryrun
+     * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
      * @return string
      * @throws Exception

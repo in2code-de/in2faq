@@ -15,6 +15,7 @@ A command controller allows you to import old EXT:irfaq records into new tables
 
 | Version    | Date       | State      | Description                                                                                                                                                                                |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 5.1.2      | 2021-11-18 | Bugfix     | Fix broken sorting for categories (automatic by title) also for FlexForms for Pi1 and Pi2                                                                                                  |
 | 5.1.1      | 2021-11-18 | Bugfix     | Fix broken sorting for categories (automatic by title) and questions (manual by sorting field) in backend                                                                                  |
 | 5.1.0      | 2021-11-18 | Task       | Support PHP 7.2 and 7.3 again, added automatic tests via github actions                                                                                                                    |
 | 5.0.0      | 2021-09-29 | Breaking   | New major release: Drop support for TYPO3 V8 and V9; Compatible with TYPO3 V11; 2 new plugins; Support slugs (incl. upgrade wizard); |

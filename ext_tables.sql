@@ -3,7 +3,7 @@ CREATE TABLE tx_in2faq_domain_model_question (
 	answer text NOT NULL,
 	question_from varchar(255) DEFAULT '' NOT NULL,
 	related_links varchar(255) DEFAULT '' NOT NULL,
-	path_segment varchar(255) DEFAULT '' NOT NULL,
+	path_segment varchar(2048) DEFAULT '' NOT NULL,
 	categories int(11) unsigned DEFAULT '0' NOT NULL
 );
 

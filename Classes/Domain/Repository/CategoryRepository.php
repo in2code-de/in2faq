@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 namespace In2code\In2faq\Domain\Repository;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -16,7 +17,7 @@ class CategoryRepository extends AbstractRepository
      * @var array
      */
     protected $defaultOrderings = [
-        'title' => QueryInterface::ORDER_ASCENDING
+        'title' => QueryInterface::ORDER_ASCENDING,
     ];
 
     /**

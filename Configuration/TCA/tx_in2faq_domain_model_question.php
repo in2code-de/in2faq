@@ -1,4 +1,5 @@
 <?php
+
 use In2code\In2faq\Domain\Model\Category;
 use In2code\In2faq\Domain\Model\Question;
 
@@ -21,12 +22,12 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'iconfile' => 'EXT:in2faq/Resources/Public/Icons/' . Question::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:in2faq/Resources/Public/Icons/' . Question::TABLE_NAME . '.svg',
     ],
     'types' => [
         '1' => [
             'showitem' =>
-                'l10n_parent, sys_language_uid, question, path_segment, answer, categories'
+                'l10n_parent, sys_language_uid, question, path_segment, answer, categories',
         ],
     ],
     'columns' => [
@@ -40,7 +41,7 @@ return [
                 'foreign_table_where' => 'ORDER BY sys_language.sorting',
                 'items' => [
                     ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1],
-                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0]
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0],
                 ],
                 'default' => 0,
             ],
@@ -79,7 +80,7 @@ return [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
-                'default' => 0
+                'default' => 0,
             ],
         ],
         'endtime' => [
@@ -89,7 +90,7 @@ return [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
-                'default' => 0
+                'default' => 0,
             ],
         ],
         'question' => [
@@ -137,13 +138,13 @@ return [
                 'size' => 50,
                 'generatorOptions' => [
                     'fields' => [
-                        'question'
-                    ]
+                        'question',
+                    ],
                 ],
                 'fallbackCharacter' => '-',
                 'eval' => 'uniqueInPid',
-                'default' => ''
-            ]
-        ]
+                'default' => '',
+            ],
+        ],
     ],
 ];

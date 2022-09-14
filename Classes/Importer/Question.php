@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\In2faq\Importer;
 
@@ -34,6 +34,6 @@ class Question extends AbstractImporter
      * @var array
      */
     protected $helpers = [
-        'answer' => 'RemoveImageTagsHelper'
+        'answer' => 'RemoveImageTagsHelper',
     ];
 }

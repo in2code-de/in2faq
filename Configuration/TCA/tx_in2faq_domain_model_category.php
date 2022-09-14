@@ -1,4 +1,5 @@
 <?php
+
 use In2code\In2faq\Domain\Model\Category;
 
 return [
@@ -20,7 +21,7 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'iconfile' => 'EXT:in2faq/Resources/Public/Icons/' . Category::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:in2faq/Resources/Public/Icons/' . Category::TABLE_NAME . '.svg',
     ],
     'types' => [
         '1' => ['showitem' => 'sys_language_uid, l10n_parent, title'],
@@ -36,7 +37,7 @@ return [
                 'foreign_table_where' => 'ORDER BY sys_language.sorting',
                 'items' => [
                     ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1],
-                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0]
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0],
                 ],
                 'default' => 0,
             ],
@@ -75,7 +76,7 @@ return [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
-                'default' => 0
+                'default' => 0,
             ],
         ],
         'endtime' => [
@@ -85,7 +86,7 @@ return [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
-                'default' => 0
+                'default' => 0,
             ],
         ],
         'title' => [
@@ -96,7 +97,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-            ]
+            ],
         ],
     ],
 ];

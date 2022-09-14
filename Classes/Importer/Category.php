@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\In2faq\Importer;
 
@@ -25,6 +25,6 @@ class Category extends AbstractImporter
     protected $mapping = [
         'sorting' => 'sorting',
         'title' => 'title',
-        'shortcut' => 'uri'
+        'shortcut' => 'uri',
     ];
 }

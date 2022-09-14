@@ -19,7 +19,7 @@
 		<ul>
 			<f:for each="{categories}" as="category">
 				<li>
-					<f:link.action action="list" arguments="{filter:'{category:category.uid}'}" class="{f:if(condition:'{filter.category} == {category}',then:'act')}">{category.title}</f:link.action>
+					<f:link.action action="list" arguments="{filter:'{category:category.uid}'}" class="{f:if(condition:'{filter.category} == {category}',then:'act')}" pluginName="Pi1" extensionName="In2faq">{category.title}</f:link.action>
 				</li>
 			</f:for>
 		</ul>

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\In2faq\Controller;
 
@@ -56,7 +56,7 @@ class FaqController extends ActionController
     {
         $this->view->assignMultiple([
             'filter' => $filter,
-            'data' => $this->configurationManager->getContentObject()->data
+            'data' => $this->configurationManager->getContentObject()->data,
         ]);
     }
 
@@ -85,7 +85,7 @@ class FaqController extends ActionController
         $this->view->assignMultiple([
             'categories' => $categories,
             'filter' => $filter,
-            'data' => $data
+            'data' => $data,
         ]);
     }
 

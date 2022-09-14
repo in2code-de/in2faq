@@ -18,7 +18,7 @@
   "type": "typo3-cms-extension",
   "license": "GPL-3.0",
   "require": {
-    "php": "^7.2",
+    "php": "^7.2 || ^8.0",
     "typo3/cms-core": "^10.4 || ^11.4",
     "ext-pdo": "*"
   },
@@ -39,7 +39,11 @@
   },
   "config": {
     "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
+    "bin-dir": ".Build/bin",
+    "allow-plugins": {
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
+    }
   },
   "scripts": {
     "post-autoload-dump": [

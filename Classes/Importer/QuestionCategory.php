@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace In2code\In2faq\Importer;
 
@@ -26,6 +26,6 @@ class QuestionCategory extends AbstractImporter
         'uid_local' => 'uid_local',
         'uid_foreign' => 'uid_foreign',
         'tablenames' => 'tablenames',
-        'sorting' => 'sorting'
+        'sorting' => 'sorting',
     ];
 }

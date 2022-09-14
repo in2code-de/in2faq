@@ -15,6 +15,7 @@ A command controller allows you to import old EXT:irfaq records into new tables
 
 | Version | Date       | State      | Description                                                                                                                          |
 |---------|------------| ---------- |--------------------------------------------------------------------------------------------------------------------------------------|
+| 6.0.0   | 2022-09-14 | Task       | Support PHP 8 now, updated CS fixer settings, prevent error with filter plugin above list plugin                                     |
 | 5.1.3   | 2022-05-24 | Bugfix     | Raise field length for path_segment in DB definition                                                                                 |
 | 5.1.2   | 2021-11-18 | Bugfix     | Fix broken sorting for categories (automatic by title) also for FlexForms for Pi1 and Pi2                                            |
 | 5.1.1   | 2021-11-18 | Bugfix     | Fix broken sorting for categories (automatic by title) and questions (manual by sorting field) in backend                            |

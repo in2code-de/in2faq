@@ -31,9 +31,10 @@ class FrontendUtility
      * @param string $key
      * @return array
      */
-    protected static function getArgumentsFromGetOrPostRequest(string $key): array
+    protected static function getArgumentsFromGetOrPostRequest(string $key): ?array
     {
-        return (array)GeneralUtility::_GP($key);
+        $value = $_POST[$key] ?? $_GET[$key] ?? null;
+        return (array)$value;
     }
 
     /**

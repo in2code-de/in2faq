@@ -5,7 +5,7 @@ namespace In2code\In2faq\Domain\Model\Dto;
 
 use In2code\In2faq\Domain\Model\Category;
 use In2code\In2faq\Domain\Repository\QuestionRepository;
-use In2code\In2faq\Utility\ObjectUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -118,7 +118,7 @@ class Filter
      */
     public function getQuestions(): ?QueryResultInterface
     {
-        $questionRepository = ObjectUtility::getObjectManager()->get(QuestionRepository::class);
+        $questionRepository = GeneralUtility::makeInstance(QuestionRepository::class);
         return $questionRepository->findByFilterAndSettings($this);
     }
 }

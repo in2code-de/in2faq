@@ -8,12 +8,12 @@ use Exception;
 use In2code\In2faq\Importer\Category;
 use In2code\In2faq\Importer\Question;
 use In2code\In2faq\Importer\QuestionCategory;
-use In2code\In2faq\Utility\ObjectUtility;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class ImportFromIrfaqCommandController
@@ -66,7 +66,7 @@ class ImportFromIrfaqCommand extends Command
      */
     protected function importCategories($dryrun, $forcePid): string
     {
-        $importer = ObjectUtility::getObjectManager()->get(Category::class);
+        $importer = GeneralUtility::makeInstance(Category::class);
         return  $importer->import($dryrun, $forcePid);
     }
 
@@ -80,7 +80,7 @@ class ImportFromIrfaqCommand extends Command
      */
     protected function importQuestions($dryrun, $forcePid): string
     {
-        $importer = ObjectUtility::getObjectManager()->get(Question::class);
+        $importer = GeneralUtility::makeInstance(Question::class);
         return $importer->import($dryrun, $forcePid);
     }
 
@@ -94,7 +94,7 @@ class ImportFromIrfaqCommand extends Command
      */
     protected function importQuestionCategoriesRelation($dryrun, $forcePid): string
     {
-        $importer = ObjectUtility::getObjectManager()->get(QuestionCategory::class);
+        $importer = GeneralUtility::makeInstance(QuestionCategory::class);
         return $importer->import($dryrun, $forcePid);
     }
 }

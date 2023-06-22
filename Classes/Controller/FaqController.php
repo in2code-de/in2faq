@@ -8,7 +8,7 @@ use In2code\In2faq\Domain\Factory\FilterFactory;
 use In2code\In2faq\Domain\Model\Dto\Filter;
 use In2code\In2faq\Domain\Repository\CategoryRepository;
 use In2code\In2faq\Domain\Repository\QuestionRepository;
-use In2code\In2faq\Utility\ObjectUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException;
 use TYPO3\CMS\Extbase\Object\Exception;
@@ -79,7 +79,7 @@ class FaqController extends ActionController
      */
     public function filterAction(Filter $filter)
     {
-        $categoryRepository = ObjectUtility::getObjectManager()->get(CategoryRepository::class);
+        $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
         $data = $this->configurationManager->getContentObjectRenderer()()->data;
         $categories = $categoryRepository->findBySettings($this->settings, $data);
         $this->view->assignMultiple([
@@ -96,7 +96,7 @@ class FaqController extends ActionController
      */
     protected function initializeFilterObject(): void
     {
-        $filter = ObjectUtility::getObjectManager()->get(FilterFactory::class, $this->settings)->getInstance();
+        $filter = GeneralUtility::makeInstance(FilterFactory::class, $this->settings)->getInstance();
         $this->request->setArgument('filter', $filter);
     }
 

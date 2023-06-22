@@ -10,7 +10,7 @@ use Exception;
 use In2code\In2faq\Importer\Helpers\AbstractHelper;
 use In2code\In2faq\Importer\Helpers\HelperInterface;
 use In2code\In2faq\Utility\DatabaseUtility;
-use In2code\In2faq\Utility\ObjectUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class AbstractImporter
@@ -169,7 +169,7 @@ abstract class AbstractImporter implements ImporterInterface
             }
             if (is_subclass_of($className, $this->helperInterface)) {
                 /** @var AbstractHelper $helperClass */
-                $helperClass = ObjectUtility::getObjectManager()->get($className, $fieldArray, $row);
+                $helperClass = GeneralUtility::makeInstance($className, $fieldArray, $row);
                 $helperClass->initialize();
                 $fieldArray[$newFieldName] = $helperClass->parseValue($fieldArray[$newFieldName]);
             } else {

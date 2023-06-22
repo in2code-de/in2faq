@@ -8,6 +8,7 @@ use In2code\In2faq\Domain\Factory\FilterFactory;
 use In2code\In2faq\Domain\Model\Dto\Filter;
 use In2code\In2faq\Domain\Repository\CategoryRepository;
 use In2code\In2faq\Domain\Repository\QuestionRepository;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException;
@@ -34,43 +35,40 @@ class FaqController extends ActionController
     }
 
     /**
-     * @return void
      * @throws InvalidArgumentNameException
      * @throws Exception
      * @noinspection PhpUnused
      */
-    public function initializeListAction(): void
+    public function initializeListAction(): ResponseInterface
     {
         $filter = $this->initializeFilterObject();
-        $this->listAction($filter);
+        return $this->listAction($filter);
     }
 
     /**
      * List action to list questions.
      * Note: Questions are delivered with $filter->getQuestions() in view
      *
-     * @param Filter $filter
-     * @return void
      * @noinspection PhpUnused
      */
-    public function listAction(Filter $filter)
+    public function listAction(Filter $filter): ResponseInterface
     {
         $this->view->assignMultiple([
             'filter' => $filter,
             'data' => $this->configurationManager->getContentObject()->data,
         ]);
+        return $this->htmlResponse();
     }
 
     /**
-     * @return void
      * @throws InvalidArgumentNameException
      * @throws Exception
      * @noinspection PhpUnused
      */
-    public function initializeFilterAction(): void
+    public function initializeFilterAction(): ResponseInterface
     {
         $filter = $this->initializeFilterObject();
-        $this->filterAction($filter);
+        return $this->filterAction($filter);
     }
 
     /**
@@ -79,7 +77,7 @@ class FaqController extends ActionController
      * @noinspection PhpUnused
      * @throws Exception
      */
-    public function filterAction(Filter $filter)
+    public function filterAction(Filter $filter): ResponseInterface
     {
         $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
         $data = $this->configurationManager->getContentObject()->data;
@@ -89,10 +87,10 @@ class FaqController extends ActionController
             'filter' => $filter,
             'data' => $data,
         ]);
+        return $this->htmlResponse();
     }
 
     /**
-     * @return Filter
      * @throws InvalidArgumentNameException
      * @throws Exception
      */
@@ -101,13 +99,10 @@ class FaqController extends ActionController
         return GeneralUtility::makeInstance(FilterFactory::class, $this->settings)->getInstance();
     }
 
-    /**
-     * @param int $question
-     * @return void
-     */
-    protected function detailAction(int $question = 0): void
+    protected function detailAction(int $question = 0): ResponseInterface
     {
         $questionObject = $this->questionRepository->findByUid($question);
         $this->view->assign('question', $questionObject);
+        return $this->htmlResponse();
     }
 }

@@ -12,6 +12,7 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 /**
  * Migrate empty slugs
  */
+#[UpgradeWizard('in2faqSlug')]
 class FaqSlugUpdater implements UpgradeWizardInterface
 {
     private const TABLE = 'tx_in2faq_domain_model_question';

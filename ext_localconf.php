@@ -46,8 +46,5 @@ call_user_func(
                 \In2code\In2faq\Controller\FaqController::class => 'list'
             ]
         );
-
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['in2faqSlug']
-            = \In2code\In2faq\Updates\FaqSlugUpdater::class;
     }
 );

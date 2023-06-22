@@ -41,7 +41,7 @@ class SlugService
         $elementCount = $queryBuilder->count('uid')
             ->from('tx_in2faq_domain_model_question')
             ->where(
-                $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->or(
                     $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', PDO::PARAM_STR)),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
@@ -65,7 +65,7 @@ class SlugService
         $statement = $queryBuilder->select('*')
             ->from('tx_in2faq_domain_model_question')
             ->where(
-                $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->or(
                     $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', PDO::PARAM_STR)),
                     $queryBuilder->expr()->isNull('path_segment')
                 )

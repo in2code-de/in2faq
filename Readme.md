@@ -11,6 +11,20 @@ question list. There is a filter by search term and a category filter.
 
 A command controller allows you to import old EXT:irfaq records into new tables
 
+## Local development
+A ddev development environment is provided (adapted from https://github.com/a-r-m-i-n/ddev-for-typo3-extensions). 
+
+### How to use ddev envirmonment
+Install ddev (https://ddev.readthedocs.io/en/stable/#installation) and run the following commands:
+
+1. Start containers
+`ddev start` 
+2. Install TYPO3 v11 and v12
+`ddev install-all`.
+3. Import data (databases for v11 and for v12)
+`ddev import-dbs`.
+
+
 ## Changelog
 
 | Version | Date       | State      | Description                                                                                                                          |

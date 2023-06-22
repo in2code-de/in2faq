@@ -41,7 +41,8 @@ class FaqController extends ActionController
      */
     public function initializeListAction(): void
     {
-        $this->initializeFilterObject();
+        $filter = $this->initializeFilterObject();
+        $this->listAction($filter);
     }
 
     /**
@@ -68,7 +69,8 @@ class FaqController extends ActionController
      */
     public function initializeFilterAction(): void
     {
-        $this->initializeFilterObject();
+        $filter = $this->initializeFilterObject();
+        $this->filterAction($filter);
     }
 
     /**
@@ -90,14 +92,13 @@ class FaqController extends ActionController
     }
 
     /**
-     * @return void
+     * @return Filter
      * @throws InvalidArgumentNameException
      * @throws Exception
      */
-    protected function initializeFilterObject(): void
+    protected function initializeFilterObject(): Filter
     {
-        $filter = GeneralUtility::makeInstance(FilterFactory::class, $this->settings)->getInstance();
-        $this->request->setArgument('filter', $filter);
+        return GeneralUtility::makeInstance(FilterFactory::class, $this->settings)->getInstance();
     }
 
     /**

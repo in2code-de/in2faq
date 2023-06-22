@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace In2code\In2faq\Domain\Repository;
 
 use In2code\In2faq\Domain\Model\Dto\Filter;
+use In2code\In2faq\Service\TreeListService;
 use In2code\In2faq\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -114,9 +115,9 @@ class QuestionRepository extends AbstractRepository
         if (!empty($settings['flexform']['main']['startpid'])) {
             $treeList = '';
             $startPages = GeneralUtility::trimExplode(',', $settings['flexform']['main']['startpid'], true);
-            $queryGenerator = ObjectUtility::getObjectManager()->get(QueryGenerator::class);
+            $treeListService = ObjectUtility::getObjectManager()->get(TreeListService::class);
             foreach ($startPages as $startPage) {
-                $treeList .= $queryGenerator->getTreeList($startPage, 20, 0, 1) . ',';
+                $treeList .= $treeListService->getPageTreeList($startPage, 20, 0, 1) . ',';
             }
             return GeneralUtility::trimExplode(',', $treeList, true);
         }

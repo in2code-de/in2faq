@@ -56,7 +56,7 @@ class FaqController extends ActionController
     {
         $this->view->assignMultiple([
             'filter' => $filter,
-            'data' => $this->configurationManager->getContentObject()->data,
+            'data' => $this->configurationManager->getContentObjectRenderer()()->data,
         ]);
     }
 
@@ -80,7 +80,7 @@ class FaqController extends ActionController
     public function filterAction(Filter $filter)
     {
         $categoryRepository = ObjectUtility::getObjectManager()->get(CategoryRepository::class);
-        $data = $this->configurationManager->getContentObject()->data;
+        $data = $this->configurationManager->getContentObjectRenderer()()->data;
         $categories = $categoryRepository->findBySettings($this->settings, $data);
         $this->view->assignMultiple([
             'categories' => $categories,

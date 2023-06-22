@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace In2code\In2faq\Service;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Database\Query\QueryHelper;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -14,7 +13,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * This class provides a replacement for the function getTreeList() from the deprecated class QueryGenerator
  * https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/11.0/Deprecation-92080-DeprecatedQueryGeneratorAndQueryView.html
- *
  */
 class TreeListService
 {
@@ -83,5 +81,4 @@ class TreeListService
     {
         return preg_replace('/^(?:(AND|OR)[[:space:]]*)+/i', '', trim($constraint)) ?: '';
     }
-
 }

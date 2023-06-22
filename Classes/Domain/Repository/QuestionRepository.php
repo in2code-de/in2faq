@@ -5,7 +5,6 @@ namespace In2code\In2faq\Domain\Repository;
 
 use In2code\In2faq\Domain\Model\Dto\Filter;
 use In2code\In2faq\Service\TreeListService;
-use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;

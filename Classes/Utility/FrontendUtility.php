@@ -3,7 +3,6 @@
 declare(strict_types=1);
 namespace In2code\In2faq\Utility;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**

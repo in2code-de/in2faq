@@ -24,6 +24,22 @@ Install ddev (https://ddev.readthedocs.io/en/stable/#installation) and run the f
 3. Import data (databases for v11 and for v12)
 `ddev import-dbs`.
 
+### Logins
+
+#### TYPO3 Backend
+* https://v11.in2faq.ddev.site/typo3
+* https://v12.in2faq.ddev.site/typo3
+
+user: `admin` 
+password: `Password:joh316`
+
+(also as Install Tool password)
+
+#### Databases
+* v11
+* v12
+user: `db`
+password: `db`
 
 ## Changelog
 

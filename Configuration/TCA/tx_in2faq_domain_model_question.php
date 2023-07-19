@@ -10,7 +10,6 @@ return [
         'tstamp' => 'tstamp',
         'sortby' => 'sorting',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
         'languageField' => 'sys_language_uid',
@@ -35,15 +34,7 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'foreign_table' => 'sys_language',
-                'foreign_table_where' => 'ORDER BY sys_language.sorting',
-                'items' => [
-                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1],
-                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0],
-                ],
-                'default' => 0,
+                'type' => 'language',
             ],
         ],
         'l10n_parent' => [
@@ -53,7 +44,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', 0],
+                    ['label' =>'', 'value'=> 0],
                 ],
                 'default' => 0,
                 'foreign_table' => Question::TABLE_NAME,
@@ -77,20 +68,18 @@ return [
             'exclude' => 1,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
-                'default' => 0,
+                'type' => 'check',
             ],
         ],
         'endtime' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
+                'type' => 'datetime',
                 'default' => 0,
+                'range' => [
+                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
+                ],
             ],
         ],
         'question' => [

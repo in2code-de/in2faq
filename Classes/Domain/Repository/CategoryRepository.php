@@ -39,7 +39,7 @@ class CategoryRepository extends AbstractRepository
             $logicalAnd[] = $query->in('pid', GeneralUtility::intExplode(',', $data['pages'], true));
         }
         if ($logicalAnd !== []) {
-            $query->matching($query->logicalAnd($logicalAnd));
+            $query->matching( $query->logicalAnd(...$logicalAnd));
         }
         return $query->execute();
     }

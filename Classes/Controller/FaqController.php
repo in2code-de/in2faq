@@ -34,16 +34,6 @@ class FaqController extends ActionController
         $this->questionRepository = $questionRepository;
     }
 
-    /**
-     * @throws InvalidArgumentNameException
-     * @throws Exception
-     * @noinspection PhpUnused
-     */
-    public function initializeListAction(): ResponseInterface
-    {
-        $filter = $this->initializeFilterObject();
-        return $this->listAction($filter);
-    }
 
     /**
      * List action to list questions.
@@ -51,8 +41,12 @@ class FaqController extends ActionController
      *
      * @noinspection PhpUnused
      */
-    public function listAction(Filter $filter): ResponseInterface
+    public function listAction(Filter $filter = null): ResponseInterface
     {
+        if(null === $filter) {
+            $filter = $this->initializeFilterObject();
+        }
+
         $this->view->assignMultiple([
             'filter' => $filter,
             'data' => $this->configurationManager->getContentObject()->data,
@@ -61,24 +55,17 @@ class FaqController extends ActionController
     }
 
     /**
-     * @throws InvalidArgumentNameException
-     * @throws Exception
-     * @noinspection PhpUnused
-     */
-    public function initializeFilterAction(): ResponseInterface
-    {
-        $filter = $this->initializeFilterObject();
-        return $this->filterAction($filter);
-    }
-
-    /**
      * @param Filter $filter
      * @return void
      * @noinspection PhpUnused
      * @throws Exception
      */
-    public function filterAction(Filter $filter): ResponseInterface
+    public function filterAction(Filter $filter = null): ResponseInterface
     {
+        if(null === $filter) {
+            $filter = $this->initializeFilterObject();
+        }
+
         $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
         $data = $this->configurationManager->getContentObject()->data;
         $categories = $categoryRepository->findBySettings($this->settings, $data);

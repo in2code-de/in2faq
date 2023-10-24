@@ -19,7 +19,7 @@
   "license": "GPL-3.0",
   "require": {
     "php": ">=8.0",
-    "typo3/cms-core": "^11.5 || ^12.4",
+    "typo3/cms-core": "^12.4",
     "ext-pdo": "*"
   },
   "require-dev": {
@@ -27,7 +27,29 @@
     "phpmd/phpmd": "^2.13",
     "friendsofphp/php-cs-fixer": "^3.18",
     "helmich/typo3-typoscript-lint": "^3.1",
-    "mikey179/vfsstream": "^1.6"
+    "mikey179/vfsstream": "^1.6",
+    "typo3/cms-adminpanel": "^12.3.0",
+    "typo3/cms-backend": "^12.3.0",
+    "typo3/cms-belog": "^12.3.0",
+    "typo3/cms-beuser": "^12.3.0",
+    "typo3/cms-dashboard": "^12.3.0",
+    "typo3/cms-extbase": "^12.3.0",
+    "typo3/cms-extensionmanager": "^12.3.0",
+    "typo3/cms-felogin": "^12.3.0",
+    "typo3/cms-filelist": "^12.3.0",
+    "typo3/cms-fluid": "^12.3.0",
+    "typo3/cms-fluid-styled-content": "^12.3.0",
+    "typo3/cms-frontend": "^12.3.0",
+    "typo3/cms-info": "^12.3.0",
+    "typo3/cms-install": "^12.3.0",
+    "typo3/cms-lowlevel": "^12.3.0",
+    "typo3/cms-recordlist": "^12.3.0",
+    "typo3/cms-recycler": "^12.3",
+    "typo3/cms-rte-ckeditor": "^12.3.0",
+    "typo3/cms-scheduler": "^12.3.0",
+    "typo3/cms-setup": "^12.3.0",
+    "typo3/cms-t3editor": "^12.3.0",
+    "typo3/cms-tstemplate": "^12.3.0"
   },
   "autoload": {
     "psr-4": {
@@ -44,8 +66,8 @@
   },
   "scripts": {
     "post-autoload-dump": [
-      "mkdir -p .Build/public/typo3conf/ext/",
-      "[ -L .Build/public/typo3conf/ext/in2faq ] || ln -snvf ../../../../. .Build/public/typo3conf/ext/in2faq"
+      "mkdir -p .Build/Web/typo3conf/ext/",
+      "[ -L .Build/Web/typo3conf/ext/in2faq ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/in2faq"
     ],
     "fix:php": "php-cs-fixer fix --config=.project/tests/.php-cs-fixer.php --diff",
     "test:php:cs": "php-cs-fixer fix --dry-run --config=.project/tests/.php-cs-fixer.php --diff",
@@ -54,7 +76,8 @@
   },
   "extra": {
     "typo3/cms": {
-      "web-dir": ".Build/public",
+      "web-dir": ".Build/Web",
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "extension-key": "in2faq"
     }
   }

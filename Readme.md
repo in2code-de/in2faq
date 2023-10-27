@@ -17,18 +17,16 @@ A ddev development environment is provided (adapted from https://github.com/a-r-
 ### How to use ddev envirmonment
 Install ddev (https://ddev.readthedocs.io/en/stable/#installation) and run the following commands:
 
-1. Start containers
+1. First time start - setup you evenvironment:
+   `ddev initialize`
+2. Start containers
 `ddev start` 
-2. Install TYPO3 v11 and v12
-`ddev install-all`.
-3. Import data (databases for v11 and for v12)
-`ddev import-dbs`.
+
 
 ### Logins
 
 #### TYPO3 Backend
-* https://v11.in2faq.ddev.site/typo3
-* https://v12.in2faq.ddev.site/typo3
+* https://in2faq.ddev.site/typo3
 
 user: `admin` 
 password: `Password:joh316`

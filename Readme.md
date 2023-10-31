@@ -17,11 +17,9 @@ A ddev development environment is provided (adapted from https://github.com/a-r-
 ### How to use ddev envirmonment
 Install ddev (https://ddev.readthedocs.io/en/stable/#installation) and run the following commands:
 
-1. First time start - setup you evenvironment:
-   `ddev initialize`
-2. Start containers
-`ddev start` 
-
+1. First time start - setup you evenvironment: `ddev initialize`
+2. Start containers: `ddev start` 
+3. Installation: `ddev composer install`
 
 ### Logins
 
@@ -34,7 +32,6 @@ password: `Password:joh316`
 (also as Install Tool password)
 
 #### Databases
-* v11
 * v12
 user: `db`
 password: `db`

@@ -113,7 +113,7 @@ return [
         'exceptionalErrors' => 12290,
         'sitename' => 'EXT:in2faq',
         'systemMaintainers' => [
-            5,
+            1,5
         ],
         'trustedHostsPattern' => '.*.*',
     ],

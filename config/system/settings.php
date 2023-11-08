@@ -3,7 +3,6 @@ return [
     'BE' => [
         'debug' => true,
         'installToolPassword' => '$argon2i$v=19$m=65536,t=16,p=1$M2Rma0QvWDhuZWlubjNmaw$GNQhyTx+WUwjV0EuzRII4KuIf9l6mI8aRR5L7ec7xas',
-        'loginRateLimit' => 0,
         'passwordHashing' => [
             'className' => 'TYPO3\\CMS\\Core\\Crypto\\PasswordHashing\\Argon2iPasswordHash',
             'options' => [],
@@ -114,7 +113,7 @@ return [
         'exceptionalErrors' => 12290,
         'sitename' => 'EXT:in2faq',
         'systemMaintainers' => [
-            5,
+            1,5
         ],
         'trustedHostsPattern' => '.*.*',
     ],

@@ -22,10 +22,9 @@ class TreeListService
      * @param int $id uid of the page
      * @param int $depth
      * @param int $begin
-     * @param string $permClause
      * @return string comma separated list of descendant pages
      */
-    public function getPageTreeList($id, $depth, $begin = 0, $permClause = '')
+    public function getPageTreeList($id, $depth, $begin = 0)
     {
         $depth = (int)$depth;
         $begin = (int)$begin;
@@ -48,9 +47,6 @@ class TreeListService
                     $queryBuilder->expr()->eq('sys_language_uid', 0)
                 )
                 ->orderBy('uid');
-            if ($permClause !== '') {
-                $queryBuilder->andWhere($this->stripLogicalOperatorPrefix($permClause));
-            }
             $statement = $queryBuilder->executeQuery();
             while ($row = $statement->fetchAllAssociative()) {
                 if ($begin <= 0) {
@@ -66,19 +62,5 @@ class TreeListService
             }
         }
         return $theList;
-    }
-
-    /**
-     * Removes the prefixes AND/OR from the input string.
-     *
-     * This function should be used when you can't guarantee that the string
-     * that you want to use as a WHERE fragment is not prefixed.
-     *
-     * @param string $constraint The where part fragment with a possible leading AND or OR operator
-     * @return string The modified where part without leading operator
-     */
-    public static function stripLogicalOperatorPrefix(string $constraint): string
-    {
-        return preg_replace('/^(?:(AND|OR)[[:space:]]*)+/i', '', trim($constraint)) ?: '';
     }
 }

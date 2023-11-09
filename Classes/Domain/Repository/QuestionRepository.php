@@ -29,8 +29,9 @@ class QuestionRepository extends AbstractRepository
         $and = $this->filterByFilterSearchterm($query, $and, $filter);
         $and = $this->filterByFilterCategory($query, $and, $filter);
         if ($and !== []) {
-            $query->matching($query->logicalAnd($and));
-        }
+            $query->matching(
+                $query->logicalAnd(...$and)
+            );}
         $query->setOrderings(['sorting' => QueryInterface::ORDER_ASCENDING]);
         return $query->execute();
     }
@@ -84,7 +85,7 @@ class QuestionRepository extends AbstractRepository
                 $logicalOr[] = $query->like('question', '%' . $searchterm . '%');
                 $logicalOr[] = $query->like('answer', '%' . $searchterm . '%');
             }
-            $and[] = $query->logicalOr($logicalOr);
+            $and[] = $query->logicalOr(...$logicalOr);
         }
         return $and;
     }
@@ -115,7 +116,7 @@ class QuestionRepository extends AbstractRepository
             $startPages = GeneralUtility::trimExplode(',', $settings['flexform']['main']['startpid'], true);
             $treeListService = GeneralUtility::makeInstance(TreeListService::class);
             foreach ($startPages as $startPage) {
-                $treeList .= $treeListService->getPageTreeList($startPage, 20, 0, 1) . ',';
+                $treeList .= $treeListService->getPageTreeList($startPage, 20, 0) . ',';
             }
             return GeneralUtility::trimExplode(',', $treeList, true);
         }

@@ -23,9 +23,8 @@ class FilterFactory
 
     /**
      * FilterFactory constructor.
-     * @param array $settings
      */
-    public function __construct(array $settings)
+    public function __construct(array $settings = [])
     {
         $this->settings = $settings;
     }

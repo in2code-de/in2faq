@@ -34,7 +34,6 @@ class FaqController extends ActionController
         $this->questionRepository = $questionRepository;
     }
 
-
     /**
      * List action to list questions.
      * Note: Questions are delivered with $filter->getQuestions() in view
@@ -43,7 +42,7 @@ class FaqController extends ActionController
      */
     public function listAction(Filter $filter = null): ResponseInterface
     {
-        if(null === $filter) {
+        if ($filter === null) {
             $filter = $this->initializeFilterObject();
         }
 
@@ -62,7 +61,7 @@ class FaqController extends ActionController
      */
     public function filterAction(Filter $filter = null): ResponseInterface
     {
-        if(null === $filter) {
+        if ($filter === null) {
             $filter = $this->initializeFilterObject();
         }
 

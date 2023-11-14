@@ -31,7 +31,8 @@ class QuestionRepository extends AbstractRepository
         if ($and !== []) {
             $query->matching(
                 $query->logicalAnd(...$and)
-            );}
+            );
+        }
         $query->setOrderings(['sorting' => QueryInterface::ORDER_ASCENDING]);
         return $query->execute();
     }

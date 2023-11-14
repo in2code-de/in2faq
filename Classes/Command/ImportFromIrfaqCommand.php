@@ -26,8 +26,8 @@ class ImportFromIrfaqCommand extends Command
     protected function configure()
     {
         $this->setHelp('Imports existing irfaq records');
-        $this->addOption('dryRun', null, InputOption::VALUE_OPTIONAL, 'Set if you want a dry-run', false);
-        $this->addOption('forcePid', null, InputOption::VALUE_OPTIONAL, 'Set if you want to import to a specific pid.');
+        $this->addOption('dryRun', null, InputOption::VALUE_REQUIRED, 'Set if you want a dry-run', false);
+        $this->addOption('forcePid', null, InputOption::VALUE_REQUIRED, 'Set if you want to import to a specific pid.');
     }
 
     /**
@@ -44,8 +44,11 @@ class ImportFromIrfaqCommand extends Command
      */
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $dryrun = $input->getOption('dryRun');
+        $dryrun = (bool)$input->getOption('dryRun');
         $forcePid = $input->getOption('forcePid');
+        if ($forcePid !== null) {
+            $forcePid = (int)$forcePid;
+        }
 
         $io = new SymfonyStyle($input, $output);
 

@@ -21,6 +21,13 @@ Install ddev (https://ddev.readthedocs.io/en/stable/#installation) and run the f
 2. Start containers: `ddev start` 
 3. Installation: `ddev composer install`
 
+There is a db dump with some test data in `.project/data/v12 `. You can import it with `ddev db-restore`.
+The dump contains some FAQs and categories and some irfaq records for testing the CLI import command.
+
+Test CLI import command (example): 
+`ddev ssh`
+`.Build/bin/typo3 in2faq:importIrFaq --dryRun=1 --forcePid=1`
+
 ### Logins
 
 #### TYPO3 Backend

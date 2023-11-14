@@ -38,6 +38,7 @@ Overview
 ========
 
 The "in2faq" extension for TYPO3 provides a solution for managing Frequently Asked Questions (FAQs) on your website.
+
 Features
 --------
 
@@ -64,7 +65,7 @@ The extension can be installed as any other extension of TYPO3:
 Configuration
 =============
 
-[Describe the configuration options here. Include any TypoScript settings, FlexForms, etc.]
+No configuration needed.
 
 .. _usage:
 
@@ -105,11 +106,5 @@ Contributors
 - Alexander Kellner
 - Sorin Loghin
 
-.. _feedback:
-
-Feedback and Support
-====================
-
-[Provide information on where to get support, how to contribute, or where to report bugs.]
 
 

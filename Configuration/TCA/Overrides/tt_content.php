@@ -36,6 +36,11 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['in2faq_pi2']
     'in2faq_pi2',
     'FILE:EXT:in2faq/Configuration/FlexForms/FlexFormPi2.xml'
 );
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['in2faq_pi3'] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    'in2faq_pi3',
+    'FILE:EXT:in2faq/Configuration/FlexForms/FlexFormPi3.xml'
+);
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['in2faq_pi4'] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     'in2faq_pi4',

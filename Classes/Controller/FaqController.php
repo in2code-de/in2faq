@@ -95,6 +95,10 @@ class FaqController extends ActionController
 
     protected function detailAction(int $question = 0): ResponseInterface
     {
+        // get question from flexform settings
+        if ($question === 0) {
+            $question = (int)$this->settings['question'];
+        }
         $questionObject = $this->questionRepository->findByUid($question);
         $this->view->assign('question', $questionObject);
         return $this->htmlResponse();

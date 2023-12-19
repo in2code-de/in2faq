@@ -69,6 +69,13 @@
 			<trans-unit id="flexform.pi2.main.categories">
 				<source>Show only this categories for filter (empty = show all)</source>
 			</trans-unit>
+
+			<trans-unit id="flexform.pi3.main">
+				<source>Settings</source>
+			</trans-unit>
+			<trans-unit id="flexform.pi3.main.faq">
+				<source>Show selected questions</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -47,6 +47,7 @@ password: `db`
 
 | Version | Date       | State      | Description                                                                                                                          |
 |---------|------------| ---------- |--------------------------------------------------------------------------------------------------------------------------------------|
+| EAP     | 2023-12-1  | Task       | Support PHP 8.1 and TYPO3 v12, provide link to detail page in list views, provide flexform configurations  for detail view           |
 | 6.0.0   | 2022-09-14 | Task       | Support PHP 8 now, updated CS fixer settings, prevent error with filter plugin above list plugin                                     |
 | 5.1.3   | 2022-05-24 | Bugfix     | Raise field length for path_segment in DB definition                                                                                 |
 | 5.1.2   | 2021-11-18 | Bugfix     | Fix broken sorting for categories (automatic by title) also for FlexForms for Pi1 and Pi2                                            |

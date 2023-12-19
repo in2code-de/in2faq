@@ -34,6 +34,14 @@ class FaqController extends ActionController
         $this->questionRepository = $questionRepository;
     }
 
+    public function initializeAction(): void
+    {
+        if ($this->arguments->hasArgument('filter')) {
+            $this->arguments->getArgument('filter')->getPropertyMappingConfiguration()
+                ->allowProperties('category');
+        }
+    }
+
     /**
      * List action to list questions.
      * Note: Questions are delivered with $filter->getQuestions() in view

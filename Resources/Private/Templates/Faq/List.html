@@ -5,6 +5,13 @@
 			<div data-in2faq="answer">
 				<f:format.html parseFuncTSPath="lib.parseFunc">{question.answer}</f:format.html>
 			</div>
+			<div>
+				<f:link.action action="detail"
+							   pageUid="{settings.flexform.main.detailpid}"
+							   arguments="{question: question.uid}">
+					Detail
+				</f:link.action>
+			</div>
 		</section>
 	</f:for>
 </div>

@@ -56,6 +56,9 @@
 			<trans-unit id="flexform.main.startpid">
 				<source>Show only FAQ in given pages (and subpages)</source>
 			</trans-unit>
+			<trans-unit id="flexform.main.detailpid">
+				<source>Uid of detail page for FAQ</source>
+			</trans-unit>
 
 			<trans-unit id="flexform.pi2.main">
 				<source>Settings</source>

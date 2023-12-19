@@ -43,6 +43,22 @@
 							</config>
 						</TCEforms>
 					</settings.flexform.main.startpid>
+					<settings.flexform.main.detailpid>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:in2faq/Resources/Private/Language/locallang_db.xlf:flexform.main.detailpid</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<autoSizeMax>3</autoSizeMax>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+							</config>
+						</TCEforms>
+					</settings.flexform.main.detailpid>
 				</el>
 			</ROOT>
 		</main>

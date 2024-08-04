@@ -66,7 +66,7 @@ class QuestionRepository extends AbstractRepository
             foreach ($categoryUids as $categoryUid) {
                 $logicalOr[] = $query->equals('categories.uid', (int)$categoryUid);
             }
-            $and[] = $query->logicalOr($logicalOr);
+            $and[] = $query->logicalOr(...$logicalOr);
         }
         return $and;
     }

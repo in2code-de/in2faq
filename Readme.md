@@ -11,42 +11,20 @@ question list. There is a filter by search term and a category filter.
 
 A command controller allows you to import old EXT:irfaq records into new tables
 
-## Local development
-A ddev development environment is provided (adapted from https://github.com/a-r-m-i-n/ddev-for-typo3-extensions). 
+## Early Access Programm for TYPO3 13 support
 
-### How to use ddev envirmonment
-Install ddev (https://ddev.readthedocs.io/en/stable/#installation) and run the following commands:
+:information_source: **TYPO3 13 compatibility**
+> See [EAP page (DE)](https://www.in2code.de/agentur/typo3-extensions/early-access-programm/) or
+> [EAP page (EN)](https://www.in2code.de/en/agency/typo3-extensions/early-access-program/) for more information how
+> to get access to a TYPO3 13 version
 
-1. First time start - setup you evenvironment: `ddev initialize`
-2. Start containers: `ddev start` 
-3. Installation: `ddev composer install`
 
-There is a db dump with some test data in `.project/data/v12 `. You can import it with `ddev db-restore`.
-The dump contains some FAQs and categories and some irfaq records for testing the CLI import command.
-
-Test CLI import command (example): 
-`ddev ssh`
-`.Build/bin/typo3 in2faq:importIrFaq --dryRun=1 --forcePid=1`
-
-### Logins
-
-#### TYPO3 Backend
-* https://in2faq.ddev.site/typo3
-
-user: `admin` 
-password: `Password:joh316`
-
-(also as Install Tool password)
-
-#### Databases
-* v12
-user: `db`
-password: `db`
 
 ## Changelog
 
 | Version | Date       | State      | Description                                                                                                                          |
 |---------|------------| ---------- |--------------------------------------------------------------------------------------------------------------------------------------|
+| 13.0.0   | tbd       | Task       | TYPO3 v13 compatibility - planned                                                                                                    |                      
 | 7.0.0   | 2023-12-25 | Task       | Support PHP 8.1 and TYPO3 v12, provide link to detail page in list views, provide flexform configurations  for detail view           |
 | 6.0.0   | 2022-09-14 | Task       | Support PHP 8 now, updated CS fixer settings, prevent error with filter plugin above list plugin                                     |
 | 5.1.3   | 2022-05-24 | Bugfix     | Raise field length for path_segment in DB definition                                                                                 |

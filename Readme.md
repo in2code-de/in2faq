@@ -24,7 +24,8 @@ A command controller allows you to import old EXT:irfaq records into new tables
 
 | Version | Date       | State      | Description                                                                                                                          |
 |---------|------------| ---------- |--------------------------------------------------------------------------------------------------------------------------------------|
-| 13.0.0   | tbd       | Task       | TYPO3 v13 compatibility - planned                                                                                                    |                      
+| 13.0.0  | tbd        | Task       | TYPO3 v13 compatibility - planned                                                                                                    |                      
+| 7.0.1   | 2024-11-25 | Task       | Tiny Bugfix, automated TER release                                                                                                   |
 | 7.0.0   | 2023-12-25 | Task       | Support PHP 8.1 and TYPO3 v12, provide link to detail page in list views, provide flexform configurations  for detail view           |
 | 6.0.0   | 2022-09-14 | Task       | Support PHP 8 now, updated CS fixer settings, prevent error with filter plugin above list plugin                                     |
 | 5.1.3   | 2022-05-24 | Bugfix     | Raise field length for path_segment in DB definition                                                                                 |

@@ -52,8 +52,6 @@ return [
     ],
     'GFX' => [
         'processor' => 'GraphicsMagick',
-        'processor_allowTemporaryMasksAsPng' => false,
-        'processor_colorspace' => 'RGB',
         'processor_effects' => false,
         'processor_enabled' => true,
         'processor_path' => '/usr/bin/',
@@ -113,7 +111,8 @@ return [
         'exceptionalErrors' => 12290,
         'sitename' => 'EXT:in2faq',
         'systemMaintainers' => [
-            1,5
+            1,
+            5,
         ],
         'trustedHostsPattern' => '.*.*',
     ],

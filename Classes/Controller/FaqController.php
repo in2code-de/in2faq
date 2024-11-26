@@ -8,6 +8,7 @@ use In2code\In2faq\Domain\Factory\FilterFactory;
 use In2code\In2faq\Domain\Model\Dto\Filter;
 use In2code\In2faq\Domain\Repository\CategoryRepository;
 use In2code\In2faq\Domain\Repository\QuestionRepository;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -20,7 +21,7 @@ use TYPO3\CMS\Extbase\Object\Exception;
  */
 class FaqController extends ActionController
 {
-    public function __construct(protected \In2code\In2faq\Domain\Repository\QuestionRepository $questionRepository)
+    public function __construct(protected QuestionRepository $questionRepository)
     {
     }
     protected function initializeAction(): void
@@ -39,8 +40,8 @@ class FaqController extends ActionController
      */
     public function listAction(Filter $filter = null): ResponseInterface
     {
-        if (!$filter instanceof \In2code\In2faq\Domain\Model\Dto\Filter) {
-            $filter = $this->initializeFilterObject();
+        if (!$filter instanceof Filter) {
+            $filter = $this->initializeFilterObject($this->request);
         }
 
         $this->view->assignMultiple([
@@ -56,8 +57,8 @@ class FaqController extends ActionController
      */
     public function filterAction(Filter $filter = null): ResponseInterface
     {
-        if (!$filter instanceof \In2code\In2faq\Domain\Model\Dto\Filter) {
-            $filter = $this->initializeFilterObject();
+        if (!$filter instanceof Filter) {
+            $filter = $this->initializeFilterObject($this->request);
         }
 
         $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
@@ -75,16 +76,16 @@ class FaqController extends ActionController
      * @throws InvalidArgumentNameException
      * @throws Exception
      */
-    protected function initializeFilterObject(): Filter
+    protected function initializeFilterObject(RequestInterface $request): Filter
     {
-        return GeneralUtility::makeInstance(FilterFactory::class, $this->settings)->getInstance();
+        return GeneralUtility::makeInstance(FilterFactory::class, $this->settings)->getInstance($request);
     }
 
     protected function detailAction(int $question = 0): ResponseInterface
     {
         // get question from flexform settings
         if ($question === 0) {
-            $question = (int)$this->settings['question'];
+            $question = isset($this->settings['question']) ? (int)$this->settings['question'] : 0;
         }
 
         $questionObject = $this->questionRepository->findByUid($question);

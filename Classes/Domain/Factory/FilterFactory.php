@@ -7,6 +7,7 @@ use In2code\In2faq\Domain\Model\Category;
 use In2code\In2faq\Domain\Model\Dto\Filter;
 use In2code\In2faq\Domain\Repository\CategoryRepository;
 use In2code\In2faq\Utility\FrontendUtility;
+use Psr\Http\Message\RequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
@@ -23,9 +24,9 @@ class FilterFactory
     {
     }
 
-    public function getInstance(): Filter
+    public function getInstance(RequestInterface $request): Filter
     {
-        $arguments = FrontendUtility::getArguments();
+        $arguments = FrontendUtility::getArguments($request);
         $filter = GeneralUtility::makeInstance(Filter::class, $this->settings);
         if (!empty($arguments['filter'])) {
             $this->setSearchterm($filter, $arguments);

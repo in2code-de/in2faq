@@ -3,7 +3,7 @@
 declare(strict_types=1);
 namespace In2code\In2faq\Utility;
 
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * Class FrontendUtility
@@ -15,43 +15,17 @@ class FrontendUtility
      * and on the other hand some POST params are still available when a form is submitted, we need a function that
      * merges both sources
      */
-    public static function getArguments(string $key = 'tx_in2faq_pi1'): array
+    public static function getArguments(RequestInterface $request, $key = 'tx_in2faq_pi1'): array
     {
-        return array_merge(
-            self::getArgumentsFromTyposcriptFrontendController($key),
-            self::getArgumentsFromGetOrPostRequest($key)
-        );
+        return self::getArgumentsFromGetOrPostRequest($key, $request);
     }
 
     /**
      * @return array
      */
-    protected static function getArgumentsFromGetOrPostRequest(string $key): ?array
+    protected static function getArgumentsFromGetOrPostRequest(string $key, RequestInterface $request): ?array
     {
-        $value = $_POST[$key] ?? $_GET[$key] ?? null;
+        $value = $request->getParsedBody()[$key] ?? $request->getQueryParams()[$key] ?? null;
         return (array)$value;
-    }
-
-    protected static function getArgumentsFromTyposcriptFrontendController(string $key): array
-    {
-        $typoScriptFrontend = self::getTyposcriptFrontendController();
-        if ($typoScriptFrontend instanceof \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController) {
-            $pageArguments = $typoScriptFrontend->getPageArguments();
-            $arguments = $pageArguments->getArguments();
-            if (array_key_exists($key, $arguments)) {
-                return (array)$arguments[$key];
-            }
-        }
-
-        return [];
-    }
-
-    /**
-     * @return TypoScriptFrontendController
-     * @SuppressWarnings(PHPMD.Superglobals)
-     */
-    public static function getTyposcriptFrontendController(): ?TypoScriptFrontendController
-    {
-        return $GLOBALS['TSFE'] ?? null;
     }
 }

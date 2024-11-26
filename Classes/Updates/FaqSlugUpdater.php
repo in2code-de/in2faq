@@ -15,12 +15,10 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 #[UpgradeWizard('in2faqSlug')]
 class FaqSlugUpdater implements UpgradeWizardInterface
 {
-    private const TABLE = 'tx_in2faq_domain_model_question';
-
     /**
      * @var SlugService
      */
-    protected $slugService;
+    protected object $slugService;
 
     /**
      * Constructor
@@ -30,18 +28,12 @@ class FaqSlugUpdater implements UpgradeWizardInterface
         $this->slugService = GeneralUtility::makeInstance(SlugService::class);
     }
 
-    /**
-     * @return bool
-     */
     public function executeUpdate(): bool
     {
         $this->slugService->performUpdates();
         return true;
     }
 
-    /**
-     * @return bool
-     */
     public function updateNecessary(): bool
     {
         $elementCount = $this->slugService->countOfSlugUpdates();
@@ -61,8 +53,6 @@ class FaqSlugUpdater implements UpgradeWizardInterface
 
     /**
      * Get title
-     *
-     * @return string
      */
     public function getTitle(): string
     {

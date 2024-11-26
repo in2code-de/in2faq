@@ -12,10 +12,10 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'service@in2code.de',
     'state' => 'stable',
     'author_company' => 'in2code GmbH',
-    'version' => '7.0.1',
+    'version' => '13.4.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '12.4.0 - 12.99.99',
+            'typo3' => '13.4.0 - 13.4.99',
         ],
         'conflicts' => [],
         'suggests' => [],

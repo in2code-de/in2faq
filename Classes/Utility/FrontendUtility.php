@@ -14,9 +14,6 @@ class FrontendUtility
      * Because GET params can be rewritten via routing configuration and so only available via TSFE on the one hand
      * and on the other hand some POST params are still available when a form is submitted, we need a function that
      * merges both sources
-     *
-     * @param string $key
-     * @return array
      */
     public static function getArguments(string $key = 'tx_in2faq_pi1'): array
     {
@@ -27,7 +24,6 @@ class FrontendUtility
     }
 
     /**
-     * @param string $key
      * @return array
      */
     protected static function getArgumentsFromGetOrPostRequest(string $key): ?array
@@ -36,20 +32,17 @@ class FrontendUtility
         return (array)$value;
     }
 
-    /**
-     * @param string $key
-     * @return array
-     */
     protected static function getArgumentsFromTyposcriptFrontendController(string $key): array
     {
         $typoScriptFrontend = self::getTyposcriptFrontendController();
-        if ($typoScriptFrontend !== null) {
+        if ($typoScriptFrontend instanceof \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController) {
             $pageArguments = $typoScriptFrontend->getPageArguments();
             $arguments = $pageArguments->getArguments();
             if (array_key_exists($key, $arguments)) {
                 return (array)$arguments[$key];
             }
         }
+
         return [];
     }
 
@@ -59,6 +52,6 @@ class FrontendUtility
      */
     public static function getTyposcriptFrontendController(): ?TypoScriptFrontendController
     {
-        return array_key_exists('TSFE', $GLOBALS) ? $GLOBALS['TSFE'] : null;
+        return $GLOBALS['TSFE'] ?? null;
     }
 }

@@ -43,7 +43,6 @@ class RemoveImageTagsHelper extends AbstractHelper
      * Try to remove not allowed tags (img e.g.) from a string
      *
      * @param string $value
-     * @return string
      */
     public function parseValue($value): string
     {

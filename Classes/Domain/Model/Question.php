@@ -35,7 +35,7 @@ class Question extends AbstractEntity
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\In2faq\Domain\Model\Category>
      */
-    protected $categories = null;
+    protected $categories;
 
     /**
      * @return string
@@ -47,9 +47,8 @@ class Question extends AbstractEntity
 
     /**
      * @param string $question
-     * @return Question
      */
-    public function setQuestion($question)
+    public function setQuestion($question): static
     {
         $this->question = $question;
         return $this;
@@ -65,9 +64,8 @@ class Question extends AbstractEntity
 
     /**
      * @param string $answer
-     * @return Question
      */
-    public function setAnswer($answer)
+    public function setAnswer($answer): static
     {
         $this->answer = $answer;
         return $this;
@@ -83,9 +81,8 @@ class Question extends AbstractEntity
 
     /**
      * @param string $questionFrom
-     * @return Question
      */
-    public function setQuestionFrom($questionFrom)
+    public function setQuestionFrom($questionFrom): static
     {
         $this->questionFrom = $questionFrom;
         return $this;
@@ -101,9 +98,8 @@ class Question extends AbstractEntity
 
     /**
      * @param string $relatedLinks
-     * @return Question
      */
-    public function setRelatedLinks($relatedLinks)
+    public function setRelatedLinks($relatedLinks): static
     {
         $this->relatedLinks = $relatedLinks;
         return $this;
@@ -119,9 +115,8 @@ class Question extends AbstractEntity
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories
-     * @return Question
      */
-    public function setCategories($categories)
+    public function setCategories($categories): static
     {
         $this->categories = $categories;
         return $this;

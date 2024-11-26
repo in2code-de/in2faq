@@ -17,21 +17,12 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 class FilterFactory
 {
     /**
-     * @var array
-     */
-    protected $settings = [];
-
-    /**
      * FilterFactory constructor.
      */
-    public function __construct(array $settings = [])
+    public function __construct(protected array $settings = [])
     {
-        $this->settings = $settings;
     }
 
-    /**
-     * @return Filter
-     */
     public function getInstance(): Filter
     {
         $arguments = FrontendUtility::getArguments();
@@ -40,14 +31,10 @@ class FilterFactory
             $this->setSearchterm($filter, $arguments);
             $this->setCategory($filter, $arguments);
         }
+
         return $filter;
     }
 
-    /**
-     * @param Filter $filter
-     * @param array $arguments
-     * @return void
-     */
     protected function setCategory(Filter $filter, array $arguments): void
     {
         if (!empty($arguments['filter']['category'])
@@ -59,11 +46,6 @@ class FilterFactory
         }
     }
 
-    /**
-     * @param Filter $filter
-     * @param array $arguments
-     * @return void
-     */
     protected function setSearchterm(Filter $filter, array $arguments): void
     {
         if (!empty($arguments['filter']['searchterm'])) {

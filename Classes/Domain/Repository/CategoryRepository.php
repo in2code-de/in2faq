@@ -21,9 +21,7 @@ class CategoryRepository extends AbstractRepository
     ];
 
     /**
-     * @param array $settings
      * @param array $data tt_content.*
-     * @return QueryResultInterface
      * @throws InvalidQueryException
      */
     public function findBySettings(array $settings, array $data): QueryResultInterface
@@ -38,9 +36,11 @@ class CategoryRepository extends AbstractRepository
         } elseif ($data['pages'] !== '') {
             $logicalAnd[] = $query->in('pid', GeneralUtility::intExplode(',', $data['pages'], true));
         }
+
         if ($logicalAnd !== []) {
             $query->matching($query->logicalAnd(...$logicalAnd));
         }
+
         return $query->execute();
     }
 }

@@ -19,7 +19,7 @@ class SlugService
     /**
      * @var SlugHelper
      */
-    protected $slugService;
+    protected object $slugService;
 
     /**
      * Constructor
@@ -30,30 +30,19 @@ class SlugService
         $this->slugService = GeneralUtility::makeInstance(SlugHelper::class, 'tx_in2faq_domain_model_question', 'path_segment', $fieldConfig);
     }
 
-    /**
-     * @return int
-     */
     public function countOfSlugUpdates(): int
     {
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_in2faq_domain_model_question');
         $queryBuilder->getRestrictions()->removeAll();
-        $elementCount = $queryBuilder->count('uid')
-            ->from('tx_in2faq_domain_model_question')
-            ->where(
-                $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', PDO::PARAM_STR)),
-                    $queryBuilder->expr()->isNull('path_segment')
-                )
-            )
-            ->execute()->fetchColumn(0);
 
-        return $elementCount;
+        return $queryBuilder->count('uid')
+            ->from('tx_in2faq_domain_model_question')->where($queryBuilder->expr()->or(
+            $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', PDO::PARAM_STR)),
+            $queryBuilder->expr()->isNull('path_segment')
+        ))->executeQuery()->fetchOne();
     }
 
-    /**
-     * @return array
-     */
     public function performUpdates(): array
     {
         $databaseQueries = [];
@@ -63,14 +52,10 @@ class SlugService
         $queryBuilder = $connection->createQueryBuilder();
         $queryBuilder->getRestrictions()->removeAll();
         $statement = $queryBuilder->select('*')
-            ->from('tx_in2faq_domain_model_question')
-            ->where(
-                $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', PDO::PARAM_STR)),
-                    $queryBuilder->expr()->isNull('path_segment')
-                )
-            )
-            ->execute();
+            ->from('tx_in2faq_domain_model_question')->where($queryBuilder->expr()->or(
+            $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', PDO::PARAM_STR)),
+            $queryBuilder->expr()->isNull('path_segment')
+        ))->executeQuery();
         while ($record = $statement->fetch()) {
             if ((string)$record['question'] !== '') {
                 $slug = $this->slugService->generate($record, $record['pid']);
@@ -91,11 +76,6 @@ class SlugService
         return $databaseQueries;
     }
 
-    /**
-     * @param int $uid
-     * @param string $slug
-     * @return string
-     */
     protected function getUniqueValue(int $uid, string $slug): string
     {
         $statement = $this->getUniqueCountStatement($uid, $slug);
@@ -114,11 +94,9 @@ class SlugService
     }
 
     /**
-     * @param int $uid
-     * @param string $slug
      * @return Statement|int
      */
-    protected function getUniqueCountStatement(int $uid, string $slug)
+    protected function getUniqueCountStatement(int $uid, string $slug): \Doctrine\DBAL\Result
     {
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -129,13 +107,9 @@ class SlugService
 
         return $queryBuilder
             ->count('uid')
-            ->from('tx_in2faq_domain_model_question')
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'path_segment',
-                    $queryBuilder->createPositionalParameter($slug)
-                ),
-                $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, PDO::PARAM_INT))
-            )->execute();
+            ->from('tx_in2faq_domain_model_question')->where($queryBuilder->expr()->eq(
+            'path_segment',
+            $queryBuilder->createPositionalParameter($slug)
+        ), $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, PDO::PARAM_INT)))->executeQuery();
     }
 }

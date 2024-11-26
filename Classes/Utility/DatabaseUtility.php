@@ -22,33 +22,22 @@ class DatabaseUtility
      */
     protected static $fieldsExisting = [];
 
-    /**
-     * @param string $tableName
-     * @param bool $removeRestrictions
-     * @return QueryBuilder
-     */
     public static function getQueryBuilderForTable(string $tableName, bool $removeRestrictions = false): QueryBuilder
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($tableName);
-        if ($removeRestrictions === true) {
+        if ($removeRestrictions) {
             $queryBuilder->getRestrictions()->removeAll();
         }
+
         return $queryBuilder;
     }
 
-    /**
-     * @param string $tableName
-     * @return Connection
-     */
     public static function getConnectionForTable(string $tableName): Connection
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($tableName);
     }
 
     /**
-     * @param string $fieldName
-     * @param string $tableName
-     * @return bool
      * @throws DBALException
      */
     public static function isFieldExistingInTable(string $fieldName, string $tableName): bool
@@ -63,10 +52,12 @@ class DatabaseUtility
                     break;
                 }
             }
+
             self::$fieldsExisting[$tableName][$fieldName] = $found;
         } else {
             $found = self::$fieldsExisting[$tableName][$fieldName];
         }
+
         return $found;
     }
 }

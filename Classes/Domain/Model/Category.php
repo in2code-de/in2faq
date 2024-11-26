@@ -32,9 +32,8 @@ class Category extends AbstractEntity
 
     /**
      * @param string $title
-     * @return Category
      */
-    public function setTitle($title)
+    public function setTitle($title): static
     {
         $this->title = $title;
         return $this;
@@ -50,9 +49,8 @@ class Category extends AbstractEntity
 
     /**
      * @param string $uri
-     * @return Category
      */
-    public function setUri($uri)
+    public function setUri($uri): static
     {
         $this->uri = $uri;
         return $this;

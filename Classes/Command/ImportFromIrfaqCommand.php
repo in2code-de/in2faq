@@ -37,12 +37,9 @@ class ImportFromIrfaqCommand extends Command
      *  to new tables (like tx_in2faq_domain_model_question, etc...).
      *  Warning: New tables will be truncated before import!!
      *
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int
      * @throws Exception
      */
-    public function execute(InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $dryrun = (bool)$input->getOption('dryRun');
         $forcePid = $input->getOption('forcePid');
@@ -62,12 +59,10 @@ class ImportFromIrfaqCommand extends Command
     /**
      * Import categories
      *
-     * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
-     * @return string
      * @throws Exception
      */
-    protected function importCategories($dryrun, $forcePid): string
+    protected function importCategories(bool $dryrun, ?int $forcePid): string
     {
         $importer = GeneralUtility::makeInstance(Category::class);
         return  $importer->import($dryrun, $forcePid);
@@ -76,12 +71,10 @@ class ImportFromIrfaqCommand extends Command
     /**
      * Import questions
      *
-     * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
-     * @return string
      * @throws Exception
      */
-    protected function importQuestions($dryrun, $forcePid): string
+    protected function importQuestions(bool $dryrun, ?int $forcePid): string
     {
         $importer = GeneralUtility::makeInstance(Question::class);
         return $importer->import($dryrun, $forcePid);
@@ -90,12 +83,10 @@ class ImportFromIrfaqCommand extends Command
     /**
      * Import relations between questions and categories
      *
-     * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
-     * @return string
      * @throws Exception
      */
-    protected function importQuestionCategoriesRelation($dryrun, $forcePid): string
+    protected function importQuestionCategoriesRelation(bool $dryrun, ?int $forcePid): string
     {
         $importer = GeneralUtility::makeInstance(QuestionCategory::class);
         return $importer->import($dryrun, $forcePid);

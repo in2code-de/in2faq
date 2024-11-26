@@ -88,9 +88,7 @@ abstract class AbstractImporter implements ImporterInterface
     /**
      * Import from irfaq
      *
-     * @param bool $dryrun
      * @param int|null $forcePid Force import of all records to a pid
-     * @return string
      * @throws Exception
      * @throws ExceptionDbalDriver
      */
@@ -102,29 +100,24 @@ abstract class AbstractImporter implements ImporterInterface
             foreach ($rows as $row) {
                 $this->importRow($row, $forcePid);
             }
-            $message = count($rows) . ' records imported to table ' . $this->tableName;
-        } else {
-            $message = count($rows) . ' records could be imported to table ' . $this->tableName;
+            return count($rows) . ' records imported to table ' . $this->tableName;
         }
-        return $message;
+
+        return count($rows) . ' records could be imported to table ' . $this->tableName;
     }
 
     /**
-     * @return array
      * @throws ExceptionDbalDriver
      */
     protected function getOldRows(): array
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable($this->tableNameOld);
         return (array)$queryBuilder
-            ->select('*')
-            ->from($this->tableNameOld)
-            ->execute()
+            ->select('*')->from($this->tableNameOld)->executeQuery()
             ->fetchAllAssociative();
     }
 
     /**
-     * @param array $row
      * @param int|null $forcePid Force import of all records to a pid
      * @throws Exception
      */
@@ -135,9 +128,7 @@ abstract class AbstractImporter implements ImporterInterface
     }
 
     /**
-     * @param array $row
      * @param int|null $forcePid Force import of all records to a pid
-     * @return array
      * @throws Exception
      */
     protected function getFieldArray(array $row, ?int $forcePid): array
@@ -148,16 +139,15 @@ abstract class AbstractImporter implements ImporterInterface
                 $fieldArray[$newProperty] = $row[$oldProperty];
             }
         }
+
         if ($forcePid !== null && $this->isFieldExistingInNewTable('pid')) {
             $fieldArray['pid'] = $forcePid;
         }
+
         return $this->parseArrayByHelpers($fieldArray, $row);
     }
 
     /**
-     * @param array $fieldArray
-     * @param array $row
-     * @return array
      * @throws Exception
      */
     protected function parseArrayByHelpers(array $fieldArray, array $row): array
@@ -165,31 +155,27 @@ abstract class AbstractImporter implements ImporterInterface
         foreach ($this->helpers as $newFieldName => $helper) {
             $className = $this->helperPrefix . $helper;
             if (!class_exists($className)) {
-                throw new Exception('Class ' . $className . ' does not exists');
+                throw new Exception('Class ' . $className . ' does not exists', 5037397061);
             }
+
             if (is_subclass_of($className, $this->helperInterface)) {
                 /** @var AbstractHelper $helperClass */
                 $helperClass = GeneralUtility::makeInstance($className, $fieldArray, $row);
                 $helperClass->initialize();
                 $fieldArray[$newFieldName] = $helperClass->parseValue($fieldArray[$newFieldName]);
             } else {
-                throw new Exception('Class does not implement ' . $this->helperInterface);
+                throw new Exception('Class does not implement ' . $this->helperInterface, 7103923840);
             }
         }
+
         return $fieldArray;
     }
 
-    /**
-     * @return array
-     */
     protected function getMapping(): array
     {
         return array_merge($this->defaultMapping, $this->mapping);
     }
 
-    /**
-     * @return void
-     */
     protected function truncateTable(): void
     {
         if ($this->truncateBeforeImport) {
@@ -199,10 +185,9 @@ abstract class AbstractImporter implements ImporterInterface
 
     /**
      * @param $fieldName
-     * @return bool
      * @throws DBALException
      */
-    protected function isFieldExistingInNewTable($fieldName): bool
+    protected function isFieldExistingInNewTable(string $fieldName): bool
     {
         return DatabaseUtility::isFieldExistingInTable($fieldName, $this->tableName);
     }

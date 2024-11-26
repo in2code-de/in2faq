@@ -12,10 +12,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 abstract class AbstractRepository extends Repository
 {
-    /**
-     * @return void
-     */
-    public function initializeObject()
+    public function initializeObject(): void
     {
         $defaultQuerySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $defaultQuerySettings->setRespectStoragePage(false);

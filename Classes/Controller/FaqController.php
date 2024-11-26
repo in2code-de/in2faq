@@ -20,21 +20,10 @@ use TYPO3\CMS\Extbase\Object\Exception;
  */
 class FaqController extends ActionController
 {
-    /**
-     * @var QuestionRepository
-     */
-    protected $questionRepository;
-
-    /**
-     * @param QuestionRepository $questionRepository
-     * @return void
-     */
-    public function injectQuestionRepository(QuestionRepository $questionRepository)
+    public function __construct(protected \In2code\In2faq\Domain\Repository\QuestionRepository $questionRepository)
     {
-        $this->questionRepository = $questionRepository;
     }
-
-    public function initializeAction(): void
+    protected function initializeAction(): void
     {
         if ($this->arguments->hasArgument('filter')) {
             $this->arguments->getArgument('filter')->getPropertyMappingConfiguration()
@@ -50,31 +39,29 @@ class FaqController extends ActionController
      */
     public function listAction(Filter $filter = null): ResponseInterface
     {
-        if ($filter === null) {
+        if (!$filter instanceof \In2code\In2faq\Domain\Model\Dto\Filter) {
             $filter = $this->initializeFilterObject();
         }
 
         $this->view->assignMultiple([
             'filter' => $filter,
-            'data' => $this->configurationManager->getContentObject()->data,
+            'data' => $this->request->getAttribute('currentContentObject')->data,
         ]);
         return $this->htmlResponse();
     }
 
     /**
-     * @param Filter $filter
-     * @return void
      * @noinspection PhpUnused
      * @throws Exception
      */
     public function filterAction(Filter $filter = null): ResponseInterface
     {
-        if ($filter === null) {
+        if (!$filter instanceof \In2code\In2faq\Domain\Model\Dto\Filter) {
             $filter = $this->initializeFilterObject();
         }
 
         $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
-        $data = $this->configurationManager->getContentObject()->data;
+        $data = $this->request->getAttribute('currentContentObject')->data;
         $categories = $categoryRepository->findBySettings($this->settings, $data);
         $this->view->assignMultiple([
             'categories' => $categories,
@@ -99,6 +86,7 @@ class FaqController extends ActionController
         if ($question === 0) {
             $question = (int)$this->settings['question'];
         }
+
         $questionObject = $this->questionRepository->findByUid($question);
         $this->view->assign('question', $questionObject);
         return $this->htmlResponse();

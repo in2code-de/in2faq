@@ -15,11 +15,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 class Filter
 {
     /**
-     * @var array
-     */
-    protected $settings = [];
-
-    /**
      * @var string
      */
     protected $searchterm = '';
@@ -27,47 +22,31 @@ class Filter
     /**
      * @var Category
      */
-    protected $category = null;
+    protected $category;
 
     /**
      * Filter constructor.
-     * @param array $settings
      */
-    public function __construct(array $settings = [])
+    public function __construct(protected array $settings = [])
     {
-        $this->settings = $settings;
     }
 
-    /**
-     * @return array
-     */
     public function getSettings(): array
     {
         return $this->settings;
     }
 
-    /**
-     * @param array $settings
-     * @return Filter
-     */
     public function setSettings(array $settings): self
     {
         $this->settings = $settings;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSearchterm(): string
     {
         return $this->searchterm;
     }
 
-    /**
-     * @param string $searchterm
-     * @return Filter
-     */
     public function setSearchterm(string $searchterm): self
     {
         $this->searchterm = $searchterm;
@@ -76,8 +55,6 @@ class Filter
 
     /**
      * Split searchterm on space for a real fulltext search
-     *
-     * @return array
      */
     public function getSearchterms(): array
     {
@@ -92,19 +69,12 @@ class Filter
         return $this->category;
     }
 
-    /**
-     * @param Category $category
-     * @return Filter
-     */
     public function setCategory(Category $category): self
     {
         $this->category = $category;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isSet(): bool
     {
         return $this->searchterm !== '' || $this->category !== null;
@@ -113,7 +83,6 @@ class Filter
     /**
      * Return all faqs that are filtered by this criteria
      *
-     * @return QueryResultInterface|null
      * @throws InvalidQueryException
      */
     public function getQuestions(): ?QueryResultInterface

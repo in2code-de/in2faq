@@ -24,7 +24,7 @@ class TreeListService
      * @param int $begin
      * @return string comma separated list of descendant pages
      */
-    public function getPageTreeList($id, $depth, $begin = 0)
+    public function getPageTreeList($id, $depth, $begin = 0): int|string|float
     {
         $depth = (int)$depth;
         $begin = (int)$begin;
@@ -32,11 +32,9 @@ class TreeListService
         if ($id < 0) {
             $id = abs($id);
         }
-        if ($begin === 0) {
-            $theList = $id;
-        } else {
-            $theList = '';
-        }
+
+        $theList = $begin === 0 ? $id : '';
+
         if ($id && $depth > 0) {
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
             $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
@@ -52,15 +50,18 @@ class TreeListService
                 if ($begin <= 0) {
                     $theList .= ',' . $row['uid'];
                 }
+
                 if ($depth > 1) {
-                    $theSubList = $this->getPageTreeList($row['uid'], $depth - 1, $begin - 1, $permClause);
+                    $theSubList = $this->getPageTreeList($row['uid'], $depth - 1, $begin - 1);
                     if (!empty($theList) && !empty($theSubList) && ($theSubList[0] !== ',')) {
                         $theList .= ',';
                     }
+
                     $theList .= $theSubList;
                 }
             }
         }
+
         return $theList;
     }
 }

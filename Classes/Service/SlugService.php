@@ -3,7 +3,6 @@
 namespace In2code\In2faq\Service;
 
 use Doctrine\DBAL\Driver\Statement;
-use PDO;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -38,7 +37,7 @@ class SlugService
 
         return $queryBuilder->count('uid')
             ->from('tx_in2faq_domain_model_question')->where($queryBuilder->expr()->or(
-            $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', PDO::PARAM_STR)),
+            $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
             $queryBuilder->expr()->isNull('path_segment')
         ))->executeQuery()->fetchOne();
     }
@@ -53,10 +52,10 @@ class SlugService
         $queryBuilder->getRestrictions()->removeAll();
         $statement = $queryBuilder->select('*')
             ->from('tx_in2faq_domain_model_question')->where($queryBuilder->expr()->or(
-            $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', PDO::PARAM_STR)),
+            $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
             $queryBuilder->expr()->isNull('path_segment')
         ))->executeQuery();
-        while ($record = $statement->fetch()) {
+        while ($record = $statement->fetchAssociative()) {
             if ((string)$record['question'] !== '') {
                 $slug = $this->slugService->generate($record, $record['pid']);
                 $queryBuilder = $connection->createQueryBuilder();
@@ -64,12 +63,12 @@ class SlugService
                     ->where(
                         $queryBuilder->expr()->eq(
                             'uid',
-                            $queryBuilder->createNamedParameter($record['uid'], PDO::PARAM_INT)
+                            $queryBuilder->createNamedParameter($record['uid'], Connection::PARAM_INT)
                         )
                     )
                     ->set('path_segment', $this->getUniqueValue($record['uid'], $slug));
                 $databaseQueries[] = $queryBuilder->getSQL();
-                $queryBuilder->execute();
+                $queryBuilder->executeQuery();
             }
         }
 
@@ -79,12 +78,12 @@ class SlugService
     protected function getUniqueValue(int $uid, string $slug): string
     {
         $statement = $this->getUniqueCountStatement($uid, $slug);
-        if ($statement->fetchColumn()) {
+        if ($statement->fetchOne()) {
             for ($counter = 1; $counter <= 100; $counter++) {
                 $newSlug = $slug . '-' . $counter;
                 $statement->bindValue(1, $newSlug);
                 $statement->execute();
-                if (!$statement->fetchColumn()) {
+                if (!$statement->fetchOne()) {
                     break;
                 }
             }

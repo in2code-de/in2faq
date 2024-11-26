@@ -21,8 +21,7 @@ abstract class AbstractHelper implements HelperInterface
          * @param array
          */
         protected array $oldProperties
-    )
-    {
+    ) {
     }
 
     /**

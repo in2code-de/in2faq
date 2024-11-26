@@ -37,9 +37,9 @@ class SlugService
 
         return $queryBuilder->count('uid')
             ->from('tx_in2faq_domain_model_question')->where($queryBuilder->expr()->or(
-            $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
-            $queryBuilder->expr()->isNull('path_segment')
-        ))->executeQuery()->fetchOne();
+                $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
+                $queryBuilder->expr()->isNull('path_segment')
+            ))->executeQuery()->fetchOne();
     }
 
     public function performUpdates(): array
@@ -52,9 +52,9 @@ class SlugService
         $queryBuilder->getRestrictions()->removeAll();
         $statement = $queryBuilder->select('*')
             ->from('tx_in2faq_domain_model_question')->where($queryBuilder->expr()->or(
-            $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
-            $queryBuilder->expr()->isNull('path_segment')
-        ))->executeQuery();
+                $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
+                $queryBuilder->expr()->isNull('path_segment')
+            ))->executeQuery();
         while ($record = $statement->fetchAssociative()) {
             if ((string)$record['question'] !== '') {
                 $slug = $this->slugService->generate($record, $record['pid']);
@@ -107,8 +107,8 @@ class SlugService
         return $queryBuilder
             ->count('uid')
             ->from('tx_in2faq_domain_model_question')->where($queryBuilder->expr()->eq(
-            'path_segment',
-            $queryBuilder->createPositionalParameter($slug)
-        ), $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, PDO::PARAM_INT)))->executeQuery();
+                'path_segment',
+                $queryBuilder->createPositionalParameter($slug)
+            ), $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, PDO::PARAM_INT)))->executeQuery();
     }
 }

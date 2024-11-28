@@ -13,7 +13,7 @@ Install ddev (https://ddev.readthedocs.io/en/stable/#installation) and run the f
 2. Start containers: `ddev start`
 3. Installation: `ddev composer install`
 
-There is a db dump with some test data in `.project/data/v12 `. You can import it with `ddev db-restore`.
+There is a db dump with some test data in `.project/data/ `. You can import it with `ddev db-restore`.
 The dump contains some FAQs and categories and some irfaq records for testing the CLI import command.
 
 Test CLI import command (example):
@@ -36,6 +36,6 @@ password: `Password:joh316`
 Databases
 ---------
 
-* v12
+* v13
     user: `db`
     password: `db`

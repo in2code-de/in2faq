@@ -11,12 +11,12 @@ question list. There is a filter by search term and a category filter.
 
 A command controller allows you to import old EXT:irfaq records into new tables
 
-## Early Access Programm for TYPO3 13 support
+## Early Access Programm for TYPO3 14 support
 
-:information_source: **TYPO3 13 compatibility**
+:information_source: **TYPO3 14 compatibility**
 > See [EAP page (DE)](https://www.in2code.de/agentur/typo3-extensions/early-access-programm/) or
 > [EAP page (EN)](https://www.in2code.de/en/agency/typo3-extensions/early-access-program/) for more information how
-> to get access to a TYPO3 13 version
+> to get access to a TYPO3 14 version
 
 
 
@@ -24,7 +24,7 @@ A command controller allows you to import old EXT:irfaq records into new tables
 
 | Version | Date       | State      | Description                                                                                                                          |
 |---------|------------| ---------- |--------------------------------------------------------------------------------------------------------------------------------------|
-| 13.0.0  | tbd        | Task       | TYPO3 v13 compatibility - planned                                                                                                    |                      
+| 13.0.0  | 2025-07-31 | Task       | TYPO3 v13 compatibility                                                                                                              |                      
 | 7.0.1   | 2024-11-25 | Task       | Tiny Bugfix, automated TER release                                                                                                   |
 | 7.0.0   | 2023-12-25 | Task       | Support PHP 8.1 and TYPO3 v12, provide link to detail page in list views, provide flexform configurations  for detail view           |
 | 6.0.0   | 2022-09-14 | Task       | Support PHP 8 now, updated CS fixer settings, prevent error with filter plugin above list plugin                                     |
